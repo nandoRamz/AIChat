@@ -20,12 +20,7 @@ struct ProfileView: View {
                     }
                 }
                 .navigationDestination(isPresented: $isShowingSettings) {
-                    ZStack {
-                        Color.gray
-                            .navigationBarTitleDisplayMode(.inline)
-                        
-                        Text("Settings View")
-                    }
+                    SettingsView()
                 }
         }
         

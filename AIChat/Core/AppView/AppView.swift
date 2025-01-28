@@ -7,26 +7,25 @@
 
 import SwiftUI
 
-
-
 struct AppView: View {
-    @State var isSignedIn: Bool = false
+    @State var appState = AppState()
     @State private var isPerformingTask: Bool = false
     
     var body: some View {
         AppViewBuilder(
-            isSignedIn: isSignedIn,
+            isSignedIn: appState.isSignedIn,
             isPerformingTask: isPerformingTask,
             tabBarView: { TabBarView() },
             onboardingView: { WelcomeView() }
         )
+        .environment(appState)
     }
 }
 
-#Preview("AppView - TabBar") {
-    AppView(isSignedIn: true)
+#Preview("AppView - TabBar") { 
+    AppView(appState: AppState(isSignedIn: true))
 }
 
 #Preview("AppView - Onboarding") {
-    AppView(isSignedIn: false)
+    AppView(appState: AppState(isSignedIn: false))
 }
