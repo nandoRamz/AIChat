@@ -25,6 +25,8 @@
 		ABDD31222D49525600A5AB28 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = ABDD31212D49525600A5AB28 /* SDWebImageSwiftUI */; };
 		ABDD31242D49526800A5AB28 /* ImageLoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD31232D49526800A5AB28 /* ImageLoaderView.swift */; };
 		ABDD31272D4954F500A5AB28 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD31262D4954F500A5AB28 /* Constants.swift */; };
+		ABDD312A2D497F9500A5AB28 /* OnboardingIntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD31292D497F9500A5AB28 /* OnboardingIntroView.swift */; };
+		ABDD312D2D4983C600A5AB28 /* OnboardingColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD312C2D4983C600A5AB28 /* OnboardingColorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +49,8 @@
 		ABDD311D2D494B8C00A5AB28 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		ABDD31232D49526800A5AB28 /* ImageLoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoaderView.swift; sourceTree = "<group>"; };
 		ABDD31262D4954F500A5AB28 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		ABDD31292D497F9500A5AB28 /* OnboardingIntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingIntroView.swift; sourceTree = "<group>"; };
+		ABDD312C2D4983C600A5AB28 /* OnboardingColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingColorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +173,8 @@
 		ABDD31132D49438200A5AB28 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				ABDD312B2D4983B000A5AB28 /* ColorView */,
+				ABDD31282D497F7500A5AB28 /* IntroView */,
 				ABDD31152D4944D700A5AB28 /* CompletedView */,
 			);
 			path = Onboarding;
@@ -212,6 +218,22 @@
 				ABDD31262D4954F500A5AB28 /* Constants.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		ABDD31282D497F7500A5AB28 /* IntroView */ = {
+			isa = PBXGroup;
+			children = (
+				ABDD31292D497F9500A5AB28 /* OnboardingIntroView.swift */,
+			);
+			path = IntroView;
+			sourceTree = "<group>";
+		};
+		ABDD312B2D4983B000A5AB28 /* ColorView */ = {
+			isa = PBXGroup;
+			children = (
+				ABDD312C2D4983C600A5AB28 /* OnboardingColorView.swift */,
+			);
+			path = ColorView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -301,9 +323,11 @@
 				ABDD311E2D494B8C00A5AB28 /* SettingsView.swift in Sources */,
 				ABDD31122D4940DB00A5AB28 /* AppState.swift in Sources */,
 				ABDD31242D49526800A5AB28 /* ImageLoaderView.swift in Sources */,
+				ABDD312D2D4983C600A5AB28 /* OnboardingColorView.swift in Sources */,
 				ABDD30F72D49235C00A5AB28 /* NOTES.swift in Sources */,
 				ABDD31062D49363500A5AB28 /* ProfileView.swift in Sources */,
 				ABDD30E82D491BD700A5AB28 /* AIChatApp.swift in Sources */,
+				ABDD312A2D497F9500A5AB28 /* OnboardingIntroView.swift in Sources */,
 				ABDD31172D49455400A5AB28 /* OnboardingCompletedView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
