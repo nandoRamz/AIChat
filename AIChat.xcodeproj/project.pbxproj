@@ -11,6 +11,7 @@
 		ABDD30EA2D491BD700A5AB28 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD30E92D491BD700A5AB28 /* ContentView.swift */; };
 		ABDD30EC2D491BD900A5AB28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABDD30EB2D491BD900A5AB28 /* Assets.xcassets */; };
 		ABDD30F02D491BD900A5AB28 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABDD30EF2D491BD900A5AB28 /* Preview Assets.xcassets */; };
+		ABDD30F72D49235C00A5AB28 /* NOTES.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD30F62D49235C00A5AB28 /* NOTES.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		ABDD30EB2D491BD900A5AB28 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ABDD30ED2D491BD900A5AB28 /* AIChat.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AIChat.entitlements; sourceTree = "<group>"; };
 		ABDD30EF2D491BD900A5AB28 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		ABDD30F62D49235C00A5AB28 /* NOTES.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NOTES.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 				ABDD30EB2D491BD900A5AB28 /* Assets.xcassets */,
 				ABDD30ED2D491BD900A5AB28 /* AIChat.entitlements */,
 				ABDD30EE2D491BD900A5AB28 /* Preview Content */,
+				ABDD30F62D49235C00A5AB28 /* NOTES.swift */,
 			);
 			path = AIChat;
 			sourceTree = "<group>";
@@ -139,6 +142,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABDD30F72D49235C00A5AB28 /* NOTES.swift in Sources */,
 				ABDD30EA2D491BD700A5AB28 /* ContentView.swift in Sources */,
 				ABDD30E82D491BD700A5AB28 /* AIChatApp.swift in Sources */,
 			);
@@ -274,6 +278,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "AI Chat";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -313,6 +318,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "AI Chat";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
