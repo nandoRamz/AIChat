@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-struct AppViewBuilder<TabbarView: View, OnboardingView: View>: View {
+struct AppViewBuilder<TabBarView: View, OnboardingView: View>: View {
     var isSignedIn: Bool
     var isPerformingTask: Bool
     
-    @ViewBuilder var tabbarView: TabbarView
+    @ViewBuilder var tabBarView: TabBarView
     @ViewBuilder var onboardingView: OnboardingView
     
     var body: some View {
@@ -20,7 +20,7 @@ struct AppViewBuilder<TabbarView: View, OnboardingView: View>: View {
             else {
                 ZStack {
                     if isSignedIn {
-                        tabbarView
+                        tabBarView
                             .transition(.move(edge: .trailing))
                     }
                     else {
@@ -38,7 +38,7 @@ struct AppViewBuilder<TabbarView: View, OnboardingView: View>: View {
     AppViewBuilder(
         isSignedIn: false,
         isPerformingTask: false,
-        tabbarView: {
+        tabBarView: {
             ZStack {
                 Color.red.ignoresSafeArea()
                 Text("Onboarding")

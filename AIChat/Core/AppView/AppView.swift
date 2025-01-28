@@ -10,29 +10,23 @@ import SwiftUI
 
 
 struct AppView: View {
-    @State private var isSignedIn: Bool = false
+    @State var isSignedIn: Bool = false
     @State private var isPerformingTask: Bool = false
     
     var body: some View {
         AppViewBuilder(
             isSignedIn: isSignedIn,
             isPerformingTask: isPerformingTask,
-            tabbarView: {
-                ZStack {
-                    Color.red.ignoresSafeArea()
-                    Text("Onboarding")
-                }
-            },
-            onboardingView: {
-                ZStack {
-                    Color.green.ignoresSafeArea()
-                    Text("Logged In")
-                }
-            }
+            tabBarView: { TabBarView() },
+            onboardingView: { WelcomeView() }
         )
     }
 }
 
-#Preview {
-    AppView()
+#Preview("AppView - TabBar") {
+    AppView(isSignedIn: true)
+}
+
+#Preview("AppView - Onboarding") {
+    AppView(isSignedIn: false)
 }
