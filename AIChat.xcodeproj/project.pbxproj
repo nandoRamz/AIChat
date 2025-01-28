@@ -12,6 +12,8 @@
 		ABDD30EC2D491BD900A5AB28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABDD30EB2D491BD900A5AB28 /* Assets.xcassets */; };
 		ABDD30F02D491BD900A5AB28 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABDD30EF2D491BD900A5AB28 /* Preview Assets.xcassets */; };
 		ABDD30F72D49235C00A5AB28 /* NOTES.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD30F62D49235C00A5AB28 /* NOTES.swift */; };
+		ABDD30FD2D492A3B00A5AB28 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD30FC2D492A3B00A5AB28 /* AppView.swift */; };
+		ABDD30FF2D49315C00A5AB28 /* AppViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD30FE2D49315C00A5AB28 /* AppViewBuilder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		ABDD30ED2D491BD900A5AB28 /* AIChat.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AIChat.entitlements; sourceTree = "<group>"; };
 		ABDD30EF2D491BD900A5AB28 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		ABDD30F62D49235C00A5AB28 /* NOTES.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NOTES.swift; sourceTree = "<group>"; };
+		ABDD30FC2D492A3B00A5AB28 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
+		ABDD30FE2D49315C00A5AB28 /* AppViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewBuilder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +58,7 @@
 		ABDD30E62D491BD700A5AB28 /* AIChat */ = {
 			isa = PBXGroup;
 			children = (
+				ABDD30FA2D49294A00A5AB28 /* Core */,
 				ABDD30E72D491BD700A5AB28 /* AIChatApp.swift */,
 				ABDD30E92D491BD700A5AB28 /* ContentView.swift */,
 				ABDD30EB2D491BD900A5AB28 /* Assets.xcassets */,
@@ -70,6 +75,23 @@
 				ABDD30EF2D491BD900A5AB28 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		ABDD30FA2D49294A00A5AB28 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				ABDD30FB2D49297900A5AB28 /* AppView */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		ABDD30FB2D49297900A5AB28 /* AppView */ = {
+			isa = PBXGroup;
+			children = (
+				ABDD30FC2D492A3B00A5AB28 /* AppView.swift */,
+				ABDD30FE2D49315C00A5AB28 /* AppViewBuilder.swift */,
+			);
+			path = AppView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,6 +164,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABDD30FF2D49315C00A5AB28 /* AppViewBuilder.swift in Sources */,
+				ABDD30FD2D492A3B00A5AB28 /* AppView.swift in Sources */,
 				ABDD30F72D49235C00A5AB28 /* NOTES.swift in Sources */,
 				ABDD30EA2D491BD700A5AB28 /* ContentView.swift in Sources */,
 				ABDD30E82D491BD700A5AB28 /* AIChatApp.swift in Sources */,
