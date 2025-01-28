@@ -24,7 +24,7 @@ struct OnboardingColorView: View {
             spacing: 16,
             content: {
                 if let selectedColor {
-                    continueNavLink
+                    continueNavLink(color: selectedColor)
                         .padding()
                         .background()
                         .transition(.move(edge: .bottom))
@@ -39,9 +39,9 @@ struct OnboardingColorView: View {
 //MARK: - Views
 ///Views
 extension OnboardingColorView {
-    private var continueNavLink: some View {
+    private func continueNavLink(color: Color) -> some View {
         NavigationLink {
-            OnboardingCompletedView()
+            OnboardingCompletedView(selectedColor: color)
         } label: {
             Text("Continue")
                 .mainButtonStyle()
@@ -79,4 +79,5 @@ extension OnboardingColorView {
     NavigationStack {
         OnboardingColorView()
     }
+    .environment(AppState())
 }

@@ -108,9 +108,9 @@
 		ABDD30FA2D49294A00A5AB28 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				ABDD30FB2D49297900A5AB28 /* AppView */,
 				ABDD311C2D494B7700A5AB28 /* Settings */,
 				ABDD31132D49438200A5AB28 /* Onboarding */,
-				ABDD30FB2D49297900A5AB28 /* AppView */,
 				ABDD310E2D493B8D00A5AB28 /* Welcome */,
 				ABDD31082D49365E00A5AB28 /* TabBar */,
 				ABDD31072D49364400A5AB28 /* Explore */,
@@ -173,8 +173,8 @@
 		ABDD31132D49438200A5AB28 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				ABDD312B2D4983B000A5AB28 /* ColorView */,
 				ABDD31282D497F7500A5AB28 /* IntroView */,
+				ABDD312B2D4983B000A5AB28 /* ColorView */,
 				ABDD31152D4944D700A5AB28 /* CompletedView */,
 			);
 			path = Onboarding;

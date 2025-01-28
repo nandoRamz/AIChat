@@ -41,7 +41,7 @@ extension WelcomeView {
     
     private var getStartedNavLink: some View {
         NavigationLink {
-            OnboardingCompletedView()
+            OnboardingIntroView()
         } label: {
             Text("Get Started")
                 .mainButtonStyle()
@@ -52,7 +52,7 @@ extension WelcomeView {
         Text("AI Chat")
             .font(.largeTitle)
             .fontWeight(.bold)
-    }
+    } 
 }
 
 //MARK: - Actions
