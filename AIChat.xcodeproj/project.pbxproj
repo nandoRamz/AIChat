@@ -27,6 +27,7 @@
 		ABDD31272D4954F500A5AB28 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD31262D4954F500A5AB28 /* Constants.swift */; };
 		ABDD312A2D497F9500A5AB28 /* OnboardingIntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD31292D497F9500A5AB28 /* OnboardingIntroView.swift */; };
 		ABDD312D2D4983C600A5AB28 /* OnboardingColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD312C2D4983C600A5AB28 /* OnboardingColorView.swift */; };
+		ABDD31302D4A79A000A5AB28 /* HeroCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD312F2D4A79A000A5AB28 /* HeroCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		ABDD31262D4954F500A5AB28 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		ABDD31292D497F9500A5AB28 /* OnboardingIntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingIntroView.swift; sourceTree = "<group>"; };
 		ABDD312C2D4983C600A5AB28 /* OnboardingColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingColorView.swift; sourceTree = "<group>"; };
+		ABDD312F2D4A79A000A5AB28 /* HeroCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,7 +209,9 @@
 		ABDD311F2D4951F000A5AB28 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				ABDD312E2D4A795C00A5AB28 /* Cells */,
 				ABDD31232D49526800A5AB28 /* ImageLoaderView.swift */,
+				ABDD312F2D4A79A000A5AB28 /* HeroCell.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -234,6 +238,13 @@
 				ABDD312C2D4983C600A5AB28 /* OnboardingColorView.swift */,
 			);
 			path = ColorView;
+			sourceTree = "<group>";
+		};
+		ABDD312E2D4A795C00A5AB28 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -321,6 +332,7 @@
 				ABDD30FD2D492A3B00A5AB28 /* AppView.swift in Sources */,
 				ABDD31102D493BC800A5AB28 /* WelcomeView.swift in Sources */,
 				ABDD311E2D494B8C00A5AB28 /* SettingsView.swift in Sources */,
+				ABDD31302D4A79A000A5AB28 /* HeroCell.swift in Sources */,
 				ABDD31122D4940DB00A5AB28 /* AppState.swift in Sources */,
 				ABDD31242D49526800A5AB28 /* ImageLoaderView.swift in Sources */,
 				ABDD312D2D4983C600A5AB28 /* OnboardingColorView.swift in Sources */,
