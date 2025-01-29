@@ -8,17 +8,64 @@
 import SwiftUI
 
 struct ExploreView: View {
-    let avatar = AvatarModel.sample
+    @State private var avatars = AvatarModel.samples
     
     var body: some View {
         NavigationStack {
-            HeroCell(
-                title: avatar.name,
-                subTitle: avatar.characterDescription(),
-                imageName: avatar.profileImageName
-            )
-            .frame(height: 200)
+            ScrollView {
+                VStack(spacing: 32) {
+                    featureAvatarsView
+                    
+                    categoriesView
+                }
+            }
+            .contentMargins(.horizontal, 16)
+            .contentMargins(.vertical, 24)
             .navigationTitle("Explore")
+        }
+    }
+}
+
+//MARK: - Views
+///Views
+extension ExploreView {
+    private var featureAvatarsView: some View {
+        VStack(spacing: 8) {
+            ListTitleView(text: "Featured Avatars")
+                .padding(.horizontal, 16)
+            
+            CarouselView(
+                items: avatars,
+                scrollTargetBehavior: .viewAligned,
+                content: { item in
+                    HeroCell(
+                        title: item.name,
+                        subTitle: item.characterDescription(),
+                        imageName: item.profileImageName
+                    )
+                    .frame(height: 200)
+                }
+            )
+        }
+    }
+    
+    private var categoriesView: some View {
+        VStack(spacing: 8) {
+            ListTitleView(text: "Categories")
+                .padding(.horizontal, 16)
+            
+            CarouselView(
+                items: CharacterOption.allCases,
+                numberOfItemsOnScreen: 3,
+                scrollTargetBehavior: .viewAligned(limitBehavior: .never),
+                isShowingPageIndicator: false,
+                content: { item in
+                    CategoryCell(
+                        title: item.rawValue.capitalized,
+                        imageName: Constants.randomImageUrlString
+                    )
+                }
+            )
         }
     }
 }

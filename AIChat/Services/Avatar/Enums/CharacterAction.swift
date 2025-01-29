@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum CharacterAction: String {
+enum CharacterAction: String, CaseIterable, Hashable {
     case smiling, sitting, eating, drinking, walking, shopping, studying, working, relaxing, fighting, crying
     
     static var `default`: Self { .working }
