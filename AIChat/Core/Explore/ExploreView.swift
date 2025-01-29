@@ -17,8 +17,12 @@ struct ExploreView: View {
                     featureAvatarsView
                     
                     categoriesView
+                    
+                    popularView
                 }
             }
+            .scrollIndicators(.hidden)
+            .background(Color(uiColor: .systemGroupedBackground)) //Change this later
             .contentMargins(.horizontal, 16)
             .contentMargins(.vertical, 24)
             .navigationTitle("Explore")
@@ -29,23 +33,31 @@ struct ExploreView: View {
 //MARK: - Views
 ///Views
 extension ExploreView {
-    private var featureAvatarsView: some View {
+    private var popularView: some View {
         VStack(spacing: 8) {
-            ListTitleView(text: "Featured Avatars")
+            ListTitleView(text: "Popular")
                 .padding(.horizontal, 16)
             
-            CarouselView(
-                items: avatars,
-                scrollTargetBehavior: .viewAligned,
-                content: { item in
-                    HeroCell(
-                        title: item.name,
-                        subTitle: item.characterDescription(),
-                        imageName: item.profileImageName
+            LazyVStack(spacing: 0) {
+                ForEach(avatars, id: \.self) { avatar in
+                    PopularCell(
+                        imageUrlString: avatar.profileImageName,
+                        title: avatar.name,
+                        subTitle: avatar.characterDescription()
                     )
-                    .frame(height: 200)
+                    .padding(.vertical, 11)
+                    .background(
+                        Divider()
+                            .frame(maxHeight: .infinity, alignment: .bottom)
+                            .padding(.horizontal, -16)
+                            .opacity(avatar == avatars.last ? 0 : 1)
+                    )
                 }
-            )
+            }
+            .padding(.horizontal)
+            .padding(.vertical, 11)
+            .background()
+            .clipShape(.rect(cornerRadius: 15))
         }
     }
     
@@ -64,6 +76,26 @@ extension ExploreView {
                         title: item.rawValue.capitalized,
                         imageName: Constants.randomImageUrlString
                     )
+                }
+            )
+        }
+    }
+    
+    private var featureAvatarsView: some View {
+        VStack(spacing: 8) {
+            ListTitleView(text: "Featured Avatars")
+                .padding(.horizontal, 16)
+            
+            CarouselView(
+                items: avatars,
+                scrollTargetBehavior: .viewAligned,
+                content: { item in
+                    HeroCell(
+                        title: item.name,
+                        subTitle: item.characterDescription(),
+                        imageName: item.profileImageName
+                    )
+                    .frame(height: 200)
                 }
             )
         }

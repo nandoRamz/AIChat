@@ -36,6 +36,8 @@
 		ABDD31422D4A9E4900A5AB28 /* ListTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD31412D4A9E4900A5AB28 /* ListTitleView.swift */; };
 		ABDD31442D4AA16500A5AB28 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD31432D4AA16500A5AB28 /* CategoryCell.swift */; };
 		ABDD31462D4AA4A900A5AB28 /* ImageTextGradientStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD31452D4AA4A900A5AB28 /* ImageTextGradientStyle.swift */; };
+		ABDD31492D4AC09400A5AB28 /* PopularCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD31482D4AC09400A5AB28 /* PopularCell.swift */; };
+		ABDD314F2D4ACD3C00A5AB28 /* ButtonScaleEffectStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD314E2D4ACD3C00A5AB28 /* ButtonScaleEffectStyle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +71,8 @@
 		ABDD31412D4A9E4900A5AB28 /* ListTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTitleView.swift; sourceTree = "<group>"; };
 		ABDD31432D4AA16500A5AB28 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		ABDD31452D4AA4A900A5AB28 /* ImageTextGradientStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTextGradientStyle.swift; sourceTree = "<group>"; };
+		ABDD31482D4AC09400A5AB28 /* PopularCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularCell.swift; sourceTree = "<group>"; };
+		ABDD314E2D4ACD3C00A5AB28 /* ButtonScaleEffectStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonScaleEffectStyle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +216,7 @@
 			children = (
 				ABDD311A2D4945CE00A5AB28 /* MainButtonStyle.swift */,
 				ABDD31452D4AA4A900A5AB28 /* ImageTextGradientStyle.swift */,
+				ABDD314E2D4ACD3C00A5AB28 /* ButtonScaleEffectStyle.swift */,
 			);
 			path = Styles;
 			sourceTree = "<group>";
@@ -262,6 +267,7 @@
 			children = (
 				ABDD312F2D4A79A000A5AB28 /* HeroCell.swift */,
 				ABDD31432D4AA16500A5AB28 /* CategoryCell.swift */,
+				ABDD31482D4AC09400A5AB28 /* PopularCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -393,6 +399,7 @@
 				ABDD30FF2D49315C00A5AB28 /* AppViewBuilder.swift in Sources */,
 				ABDD31462D4AA4A900A5AB28 /* ImageTextGradientStyle.swift in Sources */,
 				ABDD31442D4AA16500A5AB28 /* CategoryCell.swift in Sources */,
+				ABDD31492D4AC09400A5AB28 /* PopularCell.swift in Sources */,
 				ABDD310A2D49366D00A5AB28 /* TabBarView.swift in Sources */,
 				ABDD31372D4A818800A5AB28 /* CharacterOption.swift in Sources */,
 				ABDD31272D4954F500A5AB28 /* Constants.swift in Sources */,
@@ -401,6 +408,7 @@
 				ABDD30FD2D492A3B00A5AB28 /* AppView.swift in Sources */,
 				ABDD31102D493BC800A5AB28 /* WelcomeView.swift in Sources */,
 				ABDD311E2D494B8C00A5AB28 /* SettingsView.swift in Sources */,
+				ABDD314F2D4ACD3C00A5AB28 /* ButtonScaleEffectStyle.swift in Sources */,
 				ABDD31302D4A79A000A5AB28 /* HeroCell.swift in Sources */,
 				ABDD313D2D4A828900A5AB28 /* AvatarModel.swift in Sources */,
 				ABDD31122D4940DB00A5AB28 /* AppState.swift in Sources */,
