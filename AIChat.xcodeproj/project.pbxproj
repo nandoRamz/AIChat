@@ -28,6 +28,10 @@
 		ABDD312A2D497F9500A5AB28 /* OnboardingIntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD31292D497F9500A5AB28 /* OnboardingIntroView.swift */; };
 		ABDD312D2D4983C600A5AB28 /* OnboardingColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD312C2D4983C600A5AB28 /* OnboardingColorView.swift */; };
 		ABDD31302D4A79A000A5AB28 /* HeroCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD312F2D4A79A000A5AB28 /* HeroCell.swift */; };
+		ABDD31372D4A818800A5AB28 /* CharacterOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD31362D4A818800A5AB28 /* CharacterOption.swift */; };
+		ABDD31392D4A821700A5AB28 /* CharacterAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD31382D4A821700A5AB28 /* CharacterAction.swift */; };
+		ABDD313B2D4A824F00A5AB28 /* CharacterLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD313A2D4A824F00A5AB28 /* CharacterLocation.swift */; };
+		ABDD313D2D4A828900A5AB28 /* AvatarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD313C2D4A828900A5AB28 /* AvatarModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +57,10 @@
 		ABDD31292D497F9500A5AB28 /* OnboardingIntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingIntroView.swift; sourceTree = "<group>"; };
 		ABDD312C2D4983C600A5AB28 /* OnboardingColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingColorView.swift; sourceTree = "<group>"; };
 		ABDD312F2D4A79A000A5AB28 /* HeroCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroCell.swift; sourceTree = "<group>"; };
+		ABDD31362D4A818800A5AB28 /* CharacterOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterOption.swift; sourceTree = "<group>"; };
+		ABDD31382D4A821700A5AB28 /* CharacterAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterAction.swift; sourceTree = "<group>"; };
+		ABDD313A2D4A824F00A5AB28 /* CharacterLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterLocation.swift; sourceTree = "<group>"; };
+		ABDD313C2D4A828900A5AB28 /* AvatarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +94,7 @@
 		ABDD30E62D491BD700A5AB28 /* AIChat */ = {
 			isa = PBXGroup;
 			children = (
+				ABDD31312D4A80F600A5AB28 /* Services */,
 				ABDD31252D4954E300A5AB28 /* Utilities */,
 				ABDD311F2D4951F000A5AB28 /* Components */,
 				ABDD31182D4945A300A5AB28 /* Styles */,
@@ -247,6 +256,41 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		ABDD31312D4A80F600A5AB28 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				ABDD31322D4A810300A5AB28 /* Avatar */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		ABDD31322D4A810300A5AB28 /* Avatar */ = {
+			isa = PBXGroup;
+			children = (
+				ABDD31352D4A812400A5AB28 /* Enums */,
+				ABDD31342D4A811C00A5AB28 /* Models */,
+			);
+			path = Avatar;
+			sourceTree = "<group>";
+		};
+		ABDD31342D4A811C00A5AB28 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				ABDD313C2D4A828900A5AB28 /* AvatarModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		ABDD31352D4A812400A5AB28 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				ABDD31362D4A818800A5AB28 /* CharacterOption.swift */,
+				ABDD31382D4A821700A5AB28 /* CharacterAction.swift */,
+				ABDD313A2D4A824F00A5AB28 /* CharacterLocation.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -328,12 +372,16 @@
 				ABDD311B2D4945CE00A5AB28 /* MainButtonStyle.swift in Sources */,
 				ABDD30FF2D49315C00A5AB28 /* AppViewBuilder.swift in Sources */,
 				ABDD310A2D49366D00A5AB28 /* TabBarView.swift in Sources */,
+				ABDD31372D4A818800A5AB28 /* CharacterOption.swift in Sources */,
 				ABDD31272D4954F500A5AB28 /* Constants.swift in Sources */,
+				ABDD31392D4A821700A5AB28 /* CharacterAction.swift in Sources */,
 				ABDD30FD2D492A3B00A5AB28 /* AppView.swift in Sources */,
 				ABDD31102D493BC800A5AB28 /* WelcomeView.swift in Sources */,
 				ABDD311E2D494B8C00A5AB28 /* SettingsView.swift in Sources */,
 				ABDD31302D4A79A000A5AB28 /* HeroCell.swift in Sources */,
+				ABDD313D2D4A828900A5AB28 /* AvatarModel.swift in Sources */,
 				ABDD31122D4940DB00A5AB28 /* AppState.swift in Sources */,
+				ABDD313B2D4A824F00A5AB28 /* CharacterLocation.swift in Sources */,
 				ABDD31242D49526800A5AB28 /* ImageLoaderView.swift in Sources */,
 				ABDD312D2D4983C600A5AB28 /* OnboardingColorView.swift in Sources */,
 				ABDD30F72D49235C00A5AB28 /* NOTES.swift in Sources */,

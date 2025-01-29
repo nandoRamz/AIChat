@@ -8,10 +8,17 @@
 import SwiftUI
 
 struct ExploreView: View {
+    let avatar = AvatarModel.sample
+    
     var body: some View {
         NavigationStack {
-            Text("Explore")
-                .navigationTitle("Explore")
+            HeroCell(
+                title: avatar.name,
+                subTitle: avatar.characterDescription(),
+                imageName: avatar.profileImageName
+            )
+            .frame(height: 200)
+            .navigationTitle("Explore")
         }
     }
 }
