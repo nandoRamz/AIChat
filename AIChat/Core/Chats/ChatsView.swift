@@ -15,8 +15,25 @@ struct ChatsView: View {
             ScrollView {
                 LazyVStack(spacing: 0) {
                     ForEach(chats) { chat in
-                        Text(chat.id)
-                            .padding(.vertical, 11)
+                        ChatCellViewBuilder(
+                            currentUserId: "",
+                            chat: chat,
+                            getAvatar: {
+                                try? await Task.sleep(for: .seconds(1))
+                                return AvatarModel.sample
+                            },
+                            getLastChatMessage: {
+                                try? await Task.sleep(for: .seconds(1))
+                                return ChatMessageModel.sample
+                            }
+                        )
+                        .padding(.vertical, 11)
+                        .padding(.horizontal)
+                        .background(
+                            Divider()
+                                .frame(maxHeight: .infinity, alignment: .bottom)
+                                .opacity(chat == chats.last ? 0 : 1)
+                        )
                     }
                 }
                 .background()

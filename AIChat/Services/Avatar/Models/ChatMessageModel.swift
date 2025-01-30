@@ -16,6 +16,15 @@ struct ChatMessageModel {
     let timestamp: Date?
 }
 
+//MARK: - Methods
+///Methods
+extension ChatMessageModel {
+    func hasBeenSeen(by userId: String) -> Bool {
+        guard let seenByIds else { return false }
+        return seenByIds.contains(userId)
+    }
+}
+
 extension ChatMessageModel {
     static var sample: ChatMessageModel = samples[0]
     
