@@ -36,10 +36,46 @@ extension AvatarModel {
     
     static var samples: [AvatarModel] {
         [
-            AvatarModel(avatarId: UUID().uuidString, name: "Alpha", characterOption: .alien, characterAction: .drinking, characterLocation: .space, profileImageName: Constants.randomImageUrlString, authorId: UUID().uuidString, dateCreated: .now),
-            AvatarModel(avatarId: UUID().uuidString, name: "Beta", characterOption: .dog, characterAction: .walking, characterLocation: .park, profileImageName: Constants.randomImageUrlString, authorId: UUID().uuidString, dateCreated: .now),
-            AvatarModel(avatarId: UUID().uuidString, name: "Gamma", characterOption: .woman, characterAction: .relaxing, characterLocation: .forest, profileImageName: Constants.randomImageUrlString, authorId: UUID().uuidString, dateCreated: .now),
-            AvatarModel(avatarId: UUID().uuidString, name: "Delta", characterOption: .cat, characterAction: .sitting, characterLocation: .museum, profileImageName: Constants.randomImageUrlString, authorId: UUID().uuidString, dateCreated: .now)
+            AvatarModel(
+                avatarId: UUID().uuidString,
+                name: "Alpha",
+                characterOption: .alien,
+                characterAction: .drinking,
+                characterLocation: .space,
+                profileImageName: Constants.randomImageUrlString,
+                authorId: UUID().uuidString,
+                dateCreated: .now
+            ),
+            AvatarModel(
+                avatarId: UUID().uuidString,
+                name: "Beta",
+                characterOption: .dog,
+                characterAction: .walking,
+                characterLocation: .park,
+                profileImageName: Constants.randomImageUrlString,
+                authorId: UUID().uuidString,
+                dateCreated: .now
+            ),
+            AvatarModel(
+                avatarId: UUID().uuidString,
+                name: "Gamma",
+                characterOption: .woman,
+                characterAction: .relaxing,
+                characterLocation: .forest,
+                profileImageName: Constants.randomImageUrlString,
+                authorId: UUID().uuidString,
+                dateCreated: .now
+            ),
+            AvatarModel(
+                avatarId: UUID().uuidString,
+                name: "Delta",
+                characterOption: .cat,
+                characterAction: .sitting,
+                characterLocation: .museum,
+                profileImageName: Constants.randomImageUrlString,
+                authorId: UUID().uuidString,
+                dateCreated: .now
+            )
         ]
     }
 }
