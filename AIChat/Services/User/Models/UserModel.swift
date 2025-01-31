@@ -31,7 +31,7 @@ extension UserModel {
     
     static let samples: [UserModel] = [
         UserModel(
-            userId: "user_001",
+            userId: "user_456",
             didCompleteOnboarding: true,
             profileColorHex: "#4287f5",
 

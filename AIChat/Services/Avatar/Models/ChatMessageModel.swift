@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ChatMessageModel {
+struct ChatMessageModel: Identifiable {
     let id: String
     let chatId: String
     let authorId: String?
@@ -65,7 +65,7 @@ extension ChatMessageModel {
             id: "msg_005",
             chatId: "chat_003",
             authorId: "user_555",
-            content: nil, // Possible empty content scenario
+            content: "Some other text", // Possible empty content scenario
             seenByIds: ["user_333"],
             timestamp: Date(timeIntervalSince1970: 1_700_200_500)
         )

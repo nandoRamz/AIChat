@@ -12,7 +12,7 @@ struct ProfileView: View {
     @State private var currentUser: UserModel? = .sample
     @State private var myAvatars: [AvatarModel] = []
     @State private var isLoadingMyAvatars: Bool = true
-    @State private var isShowingCreateNewAvatarView: Bool = false
+    @State private var isShowingCreateAvatarView: Bool = false
     @State private var isShowingAvatarConfirmationDialog: Bool = false
     @State private var selectedAvatar: AvatarModel?
     
@@ -47,13 +47,13 @@ struct ProfileView: View {
                 titleVisibility: .hidden,
                 presenting: selectedAvatar,
                 actions: { _ in
-                    avatarDeleteActions
+                    avatarDeleteConfirmationDialogActions
                 },
                 message: { _ in
                     Text("Are you sure you would like to delete this avatar?")
                 }
             )
-            .navigationDestination(isPresented: $isShowingCreateNewAvatarView) {
+            .navigationDestination(isPresented: $isShowingCreateAvatarView) {
                 CreateAvatarView()
                     .navigationBarBackButtonHidden()
             }
@@ -70,7 +70,7 @@ extension ProfileView {
         }
     }
     
-    private var avatarDeleteActions: some View {
+    private var avatarDeleteConfirmationDialogActions: some View {
         Group {
             Button("Cancel", role: .cancel, action: {})
             Button("Yes, Delete Avatar", role: .destructive, action: { onYesDeleteAvatarPress() })
@@ -149,7 +149,7 @@ extension ProfileView {
 //MARK: - Actions
 ///Actions
 extension ProfileView {
-    private func onAddNewAvatarPress() { isShowingCreateNewAvatarView.toggle() }
+    private func onAddNewAvatarPress() { isShowingCreateAvatarView.toggle() }
     
     private func onSettingsPress() { isShowingSettings.toggle() }
     
