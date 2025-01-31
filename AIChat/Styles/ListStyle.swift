@@ -16,6 +16,7 @@ struct ListStyle<T: Hashable>: ViewModifier {
             .padding(.vertical, 11)
             .background(
                 Divider()
+                    .padding(.horizontal, -16)
                     .frame(maxHeight: .infinity, alignment: .bottom)
                     .opacity(items.last == item ? 0 : 1)
             )
