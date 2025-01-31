@@ -12,6 +12,7 @@ struct ProfileView: View {
     @State private var currentUser: UserModel? = .sample
     @State private var myAvatars: [AvatarModel] = []
     @State private var isLoadingMyAvatars: Bool = true
+    @State private var isShowingCreateNewAvatarView: Bool = false
     @State private var isShowingAvatarConfirmationDialog: Bool = false
     @State private var selectedAvatar: AvatarModel?
     
@@ -52,6 +53,10 @@ struct ProfileView: View {
                     Text("Are you sure you would like to delete this avatar?")
                 }
             )
+            .navigationDestination(isPresented: $isShowingCreateNewAvatarView) {
+                CreateAvatarView()
+                    .navigationBarBackButtonHidden()
+            }
         }
     }
 }
@@ -76,14 +81,16 @@ extension ProfileView {
         VStack(spacing: 8) {
             HStack {
                 ListTitleView(text: "My Avatars")
-
-                Text("Add")
-                    .font(.footnote)
-                    .fontWeight(.semibold)
-                    .foregroundStyle(.white)
-                    .padding(.horizontal, 8)
-                    .padding(.vertical, 4)
-                    .background(.accent, in: .capsule)
+                
+                Button(action: { onAddNewAvatarPress() }) {
+                    Text("Add")
+                        .font(.footnote)
+                        .fontWeight(.semibold)
+                        .foregroundStyle(.white)
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 4)
+                        .background(.accent, in: .capsule)
+                }
             }
             .padding(.horizontal)
             
@@ -142,6 +149,8 @@ extension ProfileView {
 //MARK: - Actions
 ///Actions
 extension ProfileView {
+    private func onAddNewAvatarPress() { isShowingCreateNewAvatarView.toggle() }
+    
     private func onSettingsPress() { isShowingSettings.toggle() }
     
     private func onDeleteAvatarPress(_ avatar: AvatarModel) {

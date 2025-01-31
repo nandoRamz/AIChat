@@ -45,6 +45,7 @@
 		ABDD315E2D4BF1E500A5AB28 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD315D2D4BF1E500A5AB28 /* UserModel.swift */; };
 		ABDD31612D4C27DE00A5AB28 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD31602D4C27DE00A5AB28 /* Color+Extension.swift */; };
 		ABDD31632D4C2D1C00A5AB28 /* ListStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD31622D4C2D1C00A5AB28 /* ListStyle.swift */; };
+		ABDD31662D4D1B2D00A5AB28 /* CreateAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD31652D4D1B2D00A5AB28 /* CreateAvatarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -87,6 +88,7 @@
 		ABDD315D2D4BF1E500A5AB28 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		ABDD31602D4C27DE00A5AB28 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		ABDD31622D4C2D1C00A5AB28 /* ListStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListStyle.swift; sourceTree = "<group>"; };
+		ABDD31652D4D1B2D00A5AB28 /* CreateAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAvatarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +148,7 @@
 		ABDD30FA2D49294A00A5AB28 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				ABDD31642D4D1B0B00A5AB28 /* CreateAvatar */,
 				ABDD30FB2D49297900A5AB28 /* AppView */,
 				ABDD311C2D494B7700A5AB28 /* Settings */,
 				ABDD31132D49438200A5AB28 /* Onboarding */,
@@ -248,6 +251,7 @@
 		ABDD311F2D4951F000A5AB28 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				ABDD31672D4D20CE00A5AB28 /* Picker */,
 				ABDD313E2D4A8C9C00A5AB28 /* Views */,
 				ABDD312E2D4A795C00A5AB28 /* Cells */,
 			);
@@ -386,6 +390,21 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		ABDD31642D4D1B0B00A5AB28 /* CreateAvatar */ = {
+			isa = PBXGroup;
+			children = (
+				ABDD31652D4D1B2D00A5AB28 /* CreateAvatarView.swift */,
+			);
+			path = CreateAvatar;
+			sourceTree = "<group>";
+		};
+		ABDD31672D4D20CE00A5AB28 /* Picker */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Picker;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -473,6 +492,7 @@
 				ABDD31372D4A818800A5AB28 /* CharacterOption.swift in Sources */,
 				ABDD31272D4954F500A5AB28 /* Constants.swift in Sources */,
 				ABDD315E2D4BF1E500A5AB28 /* UserModel.swift in Sources */,
+				ABDD31662D4D1B2D00A5AB28 /* CreateAvatarView.swift in Sources */,
 				ABDD31422D4A9E4900A5AB28 /* ListTitleView.swift in Sources */,
 				ABDD31392D4A821700A5AB28 /* CharacterAction.swift in Sources */,
 				ABDD30FD2D492A3B00A5AB28 /* AppView.swift in Sources */,
