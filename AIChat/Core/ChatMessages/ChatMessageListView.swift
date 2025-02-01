@@ -13,6 +13,7 @@ struct ChatMessageListView: View {
     @State private var avatar: AvatarModel = .sample
     @State private var currentUser: UserModel? = .sample
     @State private var lastMessageId: String?  
+    @State private var error: AnyAlertError?
 
     var body: some View {
         VStack(spacing: 0) {
@@ -24,8 +25,21 @@ struct ChatMessageListView: View {
         .animation(.easeInOut, value: messages.count)
         .navigationTitle(avatar.name ?? "Messages")
         .navigationBarTitleDisplayMode(.inline)
+        .errorAlert($error)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Menu {
+                    Button("Report", role: .destructive, action: {})
+                    Button("Delete Chat", role: .destructive, action: {})
+                    
+                } label: {
+                    Image(systemName: "ellipsis")
+                }
+            }
+        }
     }
 }
+
 
 //MARK: - Views
 ///Views
@@ -81,18 +95,27 @@ extension ChatMessageListView {
 ///Actions
 extension ChatMessageListView {
     private func onMessageSendPress() {
-        let newMessage = ChatMessageModel(
-            id: UUID().uuidString,
-            chatId: UUID().uuidString,
-            authorId: currentUser?.userId,
-            content: messageText,
-            seenByIds: [],
-            timestamp: .now
-        )
         
-        messages.append(newMessage)
-        lastMessageId = newMessage.id
-        messageText = ""
+        do {
+            try checkMessage()
+            
+            let newMessage = ChatMessageModel(
+                id: UUID().uuidString,
+                chatId: UUID().uuidString,
+                authorId: currentUser?.userId,
+                content: messageText,
+                seenByIds: [],
+                timestamp: .now
+            )
+            
+            messages.append(newMessage)
+            lastMessageId = newMessage.id
+            messageText = ""
+        }
+        catch {
+            guard let err = error as? AnyAlertError else { return }
+            self.error = err
+        }
     }
 }
 
@@ -109,6 +132,38 @@ extension ChatMessageListView {
     
     private func getMessageForegroundStyle(_ message: ChatMessageModel) -> Color {
         isCurrentUserMessage(message) ? .white : .primary
+    }
+    
+    private func checkMessage() throws {
+        let badWords = ["bitch", "ass", "dick"]
+        let messageComponents = messageText.components(separatedBy: " ")
+        
+        if messageText.count < 3 { throw SendMessageError.toShort(min: 3) }
+        
+        let containsBadWord = messageComponents.contains { badWords.contains($0.lowercased()) }
+        if containsBadWord { throw SendMessageError.containsProfanity }
+    }
+}
+
+//MARK: - Enums
+///Enums
+extension ChatMessageListView {
+    enum SendMessageError: AnyAlertError {
+        case toShort(min: Int)
+        case containsProfanity
+        
+        var title: String {
+            "Unable to send message"
+        }
+        
+        var message: String {
+            switch self {
+            case .toShort(let min):
+                "Please enter a message with at least \(min) characters long."
+            case .containsProfanity:
+                "This message contains profanity please try again."
+            }
+        }
     }
 }
 

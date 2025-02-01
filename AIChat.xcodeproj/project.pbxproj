@@ -49,6 +49,9 @@
 		ABDD316B2D4D427C00A5AB28 /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD316A2D4D427C00A5AB28 /* ChatMessageCell.swift */; };
 		ABDD316D2D4D52F900A5AB28 /* ChatMessageListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD316C2D4D52F900A5AB28 /* ChatMessageListView.swift */; };
 		ABDD31712D4D659700A5AB28 /* ViewSizeModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD31702D4D659700A5AB28 /* ViewSizeModifier.swift */; };
+		ABDD31742D4D845C00A5AB28 /* AnyAlertError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD31732D4D845C00A5AB28 /* AnyAlertError.swift */; };
+		ABDD31762D4D941800A5AB28 /* ErrorAlertModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD31752D4D941800A5AB28 /* ErrorAlertModifier.swift */; };
+		ABDD31782D4D9D9E00A5AB28 /* Binding+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD31772D4D9D9E00A5AB28 /* Binding+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -95,6 +98,9 @@
 		ABDD316A2D4D427C00A5AB28 /* ChatMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
 		ABDD316C2D4D52F900A5AB28 /* ChatMessageListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageListView.swift; sourceTree = "<group>"; };
 		ABDD31702D4D659700A5AB28 /* ViewSizeModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSizeModifier.swift; sourceTree = "<group>"; };
+		ABDD31732D4D845C00A5AB28 /* AnyAlertError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyAlertError.swift; sourceTree = "<group>"; };
+		ABDD31752D4D941800A5AB28 /* ErrorAlertModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorAlertModifier.swift; sourceTree = "<group>"; };
+		ABDD31772D4D9D9E00A5AB28 /* Binding+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +134,7 @@
 		ABDD30E62D491BD700A5AB28 /* AIChat */ = {
 			isa = PBXGroup;
 			children = (
+				ABDD31722D4D843000A5AB28 /* Protocols */,
 				ABDD315F2D4C27CB00A5AB28 /* Extensions */,
 				ABDD31312D4A80F600A5AB28 /* Services */,
 				ABDD31252D4954E300A5AB28 /* Utilities */,
@@ -270,6 +277,7 @@
 			children = (
 				ABDD31262D4954F500A5AB28 /* Constants.swift */,
 				ABDD31702D4D659700A5AB28 /* ViewSizeModifier.swift */,
+				ABDD31752D4D941800A5AB28 /* ErrorAlertModifier.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -395,6 +403,7 @@
 			isa = PBXGroup;
 			children = (
 				ABDD31602D4C27DE00A5AB28 /* Color+Extension.swift */,
+				ABDD31772D4D9D9E00A5AB28 /* Binding+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -428,6 +437,14 @@
 				ABDD316A2D4D427C00A5AB28 /* ChatMessageCell.swift */,
 			);
 			path = ChatMessageCell;
+			sourceTree = "<group>";
+		};
+		ABDD31722D4D843000A5AB28 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				ABDD31732D4D845C00A5AB28 /* AnyAlertError.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -506,6 +523,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABDD31742D4D845C00A5AB28 /* AnyAlertError.swift in Sources */,
 				ABDD316D2D4D52F900A5AB28 /* ChatMessageListView.swift in Sources */,
 				ABDD31032D4935D300A5AB28 /* ChatsView.swift in Sources */,
 				ABDD310D2D4937FA00A5AB28 /* ExploreView.swift in Sources */,
@@ -515,8 +533,10 @@
 				ABDD31442D4AA16500A5AB28 /* CategoryCell.swift in Sources */,
 				ABDD31492D4AC09400A5AB28 /* PopularCell.swift in Sources */,
 				ABDD310A2D49366D00A5AB28 /* TabBarView.swift in Sources */,
+				ABDD31762D4D941800A5AB28 /* ErrorAlertModifier.swift in Sources */,
 				ABDD31372D4A818800A5AB28 /* CharacterOption.swift in Sources */,
 				ABDD31272D4954F500A5AB28 /* Constants.swift in Sources */,
+				ABDD31782D4D9D9E00A5AB28 /* Binding+Extension.swift in Sources */,
 				ABDD31712D4D659700A5AB28 /* ViewSizeModifier.swift in Sources */,
 				ABDD315E2D4BF1E500A5AB28 /* UserModel.swift in Sources */,
 				ABDD31662D4D1B2D00A5AB28 /* CreateAvatarView.swift in Sources */,
