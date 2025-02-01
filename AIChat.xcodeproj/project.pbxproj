@@ -54,6 +54,7 @@
 		ABDD31782D4D9D9E00A5AB28 /* Binding+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD31772D4D9D9E00A5AB28 /* Binding+Extension.swift */; };
 		ABDD317B2D4E676500A5AB28 /* AvatarProfileModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD317A2D4E676500A5AB28 /* AvatarProfileModal.swift */; };
 		ABDD317D2D4E68A700A5AB28 /* ShowModalModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD317C2D4E68A700A5AB28 /* ShowModalModifier.swift */; };
+		ABDD31812D4E84EB00A5AB28 /* CategoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD31802D4E84EB00A5AB28 /* CategoryListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -105,6 +106,7 @@
 		ABDD31772D4D9D9E00A5AB28 /* Binding+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+Extension.swift"; sourceTree = "<group>"; };
 		ABDD317A2D4E676500A5AB28 /* AvatarProfileModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarProfileModal.swift; sourceTree = "<group>"; };
 		ABDD317C2D4E68A700A5AB28 /* ShowModalModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowModalModifier.swift; sourceTree = "<group>"; };
+		ABDD31802D4E84EB00A5AB28 /* CategoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +167,7 @@
 		ABDD30FA2D49294A00A5AB28 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				ABDD317E2D4E84AB00A5AB28 /* CategoryListView */,
 				ABDD31682D4D421400A5AB28 /* ChatMessages */,
 				ABDD31642D4D1B0B00A5AB28 /* CreateAvatar */,
 				ABDD30FB2D49297900A5AB28 /* AppView */,
@@ -461,6 +464,14 @@
 			name = Modals;
 			sourceTree = "<group>";
 		};
+		ABDD317E2D4E84AB00A5AB28 /* CategoryListView */ = {
+			isa = PBXGroup;
+			children = (
+				ABDD31802D4E84EB00A5AB28 /* CategoryListView.swift */,
+			);
+			path = CategoryListView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -576,6 +587,7 @@
 				ABDD317B2D4E676500A5AB28 /* AvatarProfileModal.swift in Sources */,
 				ABDD30E82D491BD700A5AB28 /* AIChatApp.swift in Sources */,
 				ABDD312A2D497F9500A5AB28 /* OnboardingIntroView.swift in Sources */,
+				ABDD31812D4E84EB00A5AB28 /* CategoryListView.swift in Sources */,
 				ABDD316B2D4D427C00A5AB28 /* ChatMessageCell.swift in Sources */,
 				ABDD31172D49455400A5AB28 /* OnboardingCompletedView.swift in Sources */,
 				ABDD31612D4C27DE00A5AB28 /* Color+Extension.swift in Sources */,

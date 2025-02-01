@@ -23,7 +23,6 @@ struct ChatMessageListView: View {
             
             messageField
         }
-        
         .animation(.easeInOut, value: messages.count)
         .showModal(isPresented: $isShowingAvatarModal) {
             AvatarProfileModal(
