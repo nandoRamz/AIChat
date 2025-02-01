@@ -13,6 +13,7 @@ struct ChatMessageCell: View {
     var foregroundStyle: Color = .primary
     var background: AnyShapeStyle = AnyShapeStyle(.ultraThinMaterial)
     var alignment: Alignment = .leading
+    var onAvatarPress: (() -> Void)?
     
     var body: some View {
         HStack(alignment: .bottom) {
@@ -21,7 +22,7 @@ struct ChatMessageCell: View {
                     .frame(width: 34, height: 34)
                     .clipShape(.circle)
                     .padding(.bottom, 7)
-                    .opacity(alignment == .leading ? 1 : 0)
+                    .onTapGesture { onAvatarPress?() }
             }
             
             Text(text)

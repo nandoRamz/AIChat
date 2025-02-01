@@ -14,7 +14,8 @@ struct ChatMessageListView: View {
     @State private var currentUser: UserModel? = .sample
     @State private var lastMessageId: String?  
     @State private var error: AnyAlertError?
-
+    @State private var isShowingAvatarModal: Bool = false
+ 
     var body: some View {
         VStack(spacing: 0) {
             list
@@ -22,7 +23,15 @@ struct ChatMessageListView: View {
             
             messageField
         }
+        
         .animation(.easeInOut, value: messages.count)
+        .showModal(isPresented: $isShowingAvatarModal) {
+            AvatarProfileModal(
+                imageUrlString: avatar.profileImageName,
+                title: avatar.name,
+                subtitle: avatar.characterDescription()
+            )
+        }
         .navigationTitle(avatar.name ?? "Messages")
         .navigationBarTitleDisplayMode(.inline)
         .errorAlert($error)
@@ -76,7 +85,8 @@ extension ChatMessageListView {
                         text: message.content ?? "" ,
                         foregroundStyle: getMessageForegroundStyle(message),
                         background: getMessageBackground(message),
-                        alignment: isCurrentUserMessage(message) ? .trailing : .leading
+                        alignment: isCurrentUserMessage(message) ? .trailing : .leading,
+                        onAvatarPress: { onAvatarPress() }
                     )
                     .id(message.id)
                 }
@@ -94,8 +104,9 @@ extension ChatMessageListView {
 //MARK: - Actions
 ///Actions
 extension ChatMessageListView {
+    private func onAvatarPress() { isShowingAvatarModal.toggle() }
+    
     private func onMessageSendPress() {
-        
         do {
             try checkMessage()
             
@@ -172,3 +183,39 @@ extension ChatMessageListView {
         ChatMessageListView()
     }
 }
+
+/*
+ VStack {
+     ImageLoaderView(urlString: avatar.profileImageName)
+         .aspectRatio(1, contentMode: .fit)
+     
+     VStack(alignment: .leading) {
+         Text("Some Title")
+             .font(.headline)
+         
+         Text("Some Title")
+             .font(.subheadline)
+             .foregroundStyle(.secondary)
+     }
+     .frame(maxWidth: .infinity, alignment: .leading)
+     .padding()
+ }
+ .background(.ultraThinMaterial)
+ .clipShape(.rect(cornerRadius: 15))
+ .padding(.horizontal, 40)
+ .offset(x: isShowingAvatarModal ? 0 : -1000)
+ */
+
+/*
+ ZStack {
+     if isShowingAvatarModal {
+             Color.black.opacity(0.5)
+                 .ignoresSafeArea()
+                 .onTapGesture { isShowingAvatarModal.toggle() }
+             
+             
+             .padding(.horizontal, 40)
+             .transition(.move(edge: .leading))
+     }
+ }
+ */

@@ -52,6 +52,8 @@
 		ABDD31742D4D845C00A5AB28 /* AnyAlertError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD31732D4D845C00A5AB28 /* AnyAlertError.swift */; };
 		ABDD31762D4D941800A5AB28 /* ErrorAlertModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD31752D4D941800A5AB28 /* ErrorAlertModifier.swift */; };
 		ABDD31782D4D9D9E00A5AB28 /* Binding+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD31772D4D9D9E00A5AB28 /* Binding+Extension.swift */; };
+		ABDD317B2D4E676500A5AB28 /* AvatarProfileModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD317A2D4E676500A5AB28 /* AvatarProfileModal.swift */; };
+		ABDD317D2D4E68A700A5AB28 /* ShowModalModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD317C2D4E68A700A5AB28 /* ShowModalModifier.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -101,6 +103,8 @@
 		ABDD31732D4D845C00A5AB28 /* AnyAlertError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyAlertError.swift; sourceTree = "<group>"; };
 		ABDD31752D4D941800A5AB28 /* ErrorAlertModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorAlertModifier.swift; sourceTree = "<group>"; };
 		ABDD31772D4D9D9E00A5AB28 /* Binding+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+Extension.swift"; sourceTree = "<group>"; };
+		ABDD317A2D4E676500A5AB28 /* AvatarProfileModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarProfileModal.swift; sourceTree = "<group>"; };
+		ABDD317C2D4E68A700A5AB28 /* ShowModalModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowModalModifier.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -265,6 +269,7 @@
 		ABDD311F2D4951F000A5AB28 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				ABDD31792D4E673F00A5AB28 /* Modals */,
 				ABDD31672D4D20CE00A5AB28 /* Picker */,
 				ABDD313E2D4A8C9C00A5AB28 /* Views */,
 				ABDD312E2D4A795C00A5AB28 /* Cells */,
@@ -278,6 +283,7 @@
 				ABDD31262D4954F500A5AB28 /* Constants.swift */,
 				ABDD31702D4D659700A5AB28 /* ViewSizeModifier.swift */,
 				ABDD31752D4D941800A5AB28 /* ErrorAlertModifier.swift */,
+				ABDD317C2D4E68A700A5AB28 /* ShowModalModifier.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -447,6 +453,14 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		ABDD31792D4E673F00A5AB28 /* Modals */ = {
+			isa = PBXGroup;
+			children = (
+				ABDD317A2D4E676500A5AB28 /* AvatarProfileModal.swift */,
+			);
+			name = Modals;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -558,6 +572,8 @@
 				ABDD312D2D4983C600A5AB28 /* OnboardingColorView.swift in Sources */,
 				ABDD30F72D49235C00A5AB28 /* NOTES.swift in Sources */,
 				ABDD31062D49363500A5AB28 /* ProfileView.swift in Sources */,
+				ABDD317D2D4E68A700A5AB28 /* ShowModalModifier.swift in Sources */,
+				ABDD317B2D4E676500A5AB28 /* AvatarProfileModal.swift in Sources */,
 				ABDD30E82D491BD700A5AB28 /* AIChatApp.swift in Sources */,
 				ABDD312A2D497F9500A5AB28 /* OnboardingIntroView.swift in Sources */,
 				ABDD316B2D4D427C00A5AB28 /* ChatMessageCell.swift in Sources */,
