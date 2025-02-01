@@ -51,7 +51,7 @@ fileprivate struct Preview: View {
         VStack {
             Text("Show alert")
                 .onTapGesture {
-                    error = SendMessageError.containsProfanity
+                    error = ChatMessageListView.SendMessageError.containsProfanity
                 }
         }
         .errorAlert($error)
