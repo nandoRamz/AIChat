@@ -57,6 +57,7 @@
 		ABDD31812D4E84EB00A5AB28 /* CategoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD31802D4E84EB00A5AB28 /* CategoryListView.swift */; };
 		ABF6B2852D5099E000B9D27A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ABF6B2842D5099E000B9D27A /* GoogleService-Info.plist */; };
 		ABF6B2882D509AE100B9D27A /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = ABF6B2872D509AE100B9D27A /* FirebaseAuth */; };
+		ABF6B28B2D509D6500B9D27A /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF6B28A2D509D6500B9D27A /* FirebaseAuthService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -110,6 +111,7 @@
 		ABDD317C2D4E68A700A5AB28 /* ShowModalModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowModalModifier.swift; sourceTree = "<group>"; };
 		ABDD31802D4E84EB00A5AB28 /* CategoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListView.swift; sourceTree = "<group>"; };
 		ABF6B2842D5099E000B9D27A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		ABF6B28A2D509D6500B9D27A /* FirebaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -327,6 +329,7 @@
 		ABDD31312D4A80F600A5AB28 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				ABF6B2892D509D4B00B9D27A /* Auth */,
 				ABDD315B2D4BF1CD00A5AB28 /* User */,
 				ABDD31502D4BCCB900A5AB28 /* Chat */,
 				ABDD31322D4A810300A5AB28 /* Avatar */,
@@ -477,6 +480,14 @@
 			path = CategoryListView;
 			sourceTree = "<group>";
 		};
+		ABF6B2892D509D4B00B9D27A /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				ABF6B28A2D509D6500B9D27A /* FirebaseAuthService.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -586,6 +597,7 @@
 				ABDD313B2D4A824F00A5AB28 /* CharacterLocation.swift in Sources */,
 				ABDD31572D4BD6D700A5AB28 /* ChatCell.swift in Sources */,
 				ABDD31242D49526800A5AB28 /* ImageLoaderView.swift in Sources */,
+				ABF6B28B2D509D6500B9D27A /* FirebaseAuthService.swift in Sources */,
 				ABDD315A2D4BE35100A5AB28 /* ChatCellViewBuilder.swift in Sources */,
 				ABDD31532D4BCCD800A5AB28 /* ChatModel.swift in Sources */,
 				ABDD312D2D4983C600A5AB28 /* OnboardingColorView.swift in Sources */,
