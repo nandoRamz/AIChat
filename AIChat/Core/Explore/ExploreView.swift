@@ -24,7 +24,6 @@ struct ExploreView: View {
             .scrollIndicators(.hidden)
             .background(Color(uiColor: .systemGroupedBackground)) //Change this later
             .contentMargins(.horizontal, 16)
-            .contentMargins(.vertical, 24)
             .navigationTitle("Explore")
         }
     }
