@@ -7,15 +7,26 @@
 
 import Foundation
 
-struct AvatarModel: Hashable {
-    let avatarId: String //
+struct AvatarModel: Codable, Hashable {
+    private(set) var id: String //
     let name: String?
     let characterOption: CharacterOption?
     let characterAction: CharacterAction?
     let characterLocation: CharacterLocation?
-    let profileImageName: String?
+    private(set) var imageUrl: String?
     let authorId: String? //
-    let dateCreated: Date? //    
+    private(set) var timestamp: Date? //
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case name
+        case characterOption = "character_option"
+        case characterAction = "character_action"
+        case characterLocation = "character_location"
+        case imageUrl = "image_url"
+        case authorId = "created_by"
+        case timestamp = "timestamp"
+    }
 }
 
 //MARK: - Methods
@@ -28,6 +39,18 @@ extension AvatarModel {
         
         return "A \(unwrappedOption.rawValue) that is \(unwrappedAction.rawValue) in the \(unwrappedLocation.rawValue)."
     }
+    
+    mutating func updateId(with id: String) {
+        self.id = id
+    }
+    
+    mutating func updateTimestamp(with date: Date) {
+        self.timestamp = date
+    }
+    
+    mutating func updateImageUrl(with urlString: String) {
+        self.imageUrl = urlString
+    }
 }
 
 
@@ -37,44 +60,44 @@ extension AvatarModel {
     static var samples: [AvatarModel] {
         [
             AvatarModel(
-                avatarId: UUID().uuidString,
+                id: UUID().uuidString,
                 name: "Alpha",
                 characterOption: .alien,
                 characterAction: .drinking,
                 characterLocation: .space,
-                profileImageName: Constants.randomImageUrlString,
+                imageUrl: Constants.randomImageUrlString,
                 authorId: UUID().uuidString,
-                dateCreated: .now
+                timestamp: .now
             ),
             AvatarModel(
-                avatarId: UUID().uuidString,
+                id: UUID().uuidString,
                 name: "Beta",
                 characterOption: .dog,
                 characterAction: .walking,
                 characterLocation: .park,
-                profileImageName: Constants.randomImageUrlString,
+                imageUrl: Constants.randomImageUrlString,
                 authorId: UUID().uuidString,
-                dateCreated: .now
+                timestamp: .now
             ),
             AvatarModel(
-                avatarId: UUID().uuidString,
+                id: UUID().uuidString,
                 name: "Gamma",
                 characterOption: .woman,
                 characterAction: .relaxing,
                 characterLocation: .forest,
-                profileImageName: Constants.randomImageUrlString,
+                imageUrl: Constants.randomImageUrlString,
                 authorId: UUID().uuidString,
-                dateCreated: .now
+                timestamp: .now
             ),
             AvatarModel(
-                avatarId: UUID().uuidString,
+                id: UUID().uuidString,
                 name: "Delta",
                 characterOption: .cat,
                 characterAction: .sitting,
                 characterLocation: .museum,
-                profileImageName: Constants.randomImageUrlString,
+                imageUrl: Constants.randomImageUrlString,
                 authorId: UUID().uuidString,
-                dateCreated: .now
+                timestamp: .now
             )
         ]
     }

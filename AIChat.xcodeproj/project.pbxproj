@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ABCD0B322D557E66001F0EF7 /* MockAvatarService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD0B312D557E66001F0EF7 /* MockAvatarService.swift */; };
+		ABCD0B342D557E78001F0EF7 /* FirestoreAvatarService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD0B332D557E78001F0EF7 /* FirestoreAvatarService.swift */; };
+		ABCD0B362D557E87001F0EF7 /* AvatarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD0B352D557E87001F0EF7 /* AvatarManager.swift */; };
 		ABDD30E82D491BD700A5AB28 /* AIChatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD30E72D491BD700A5AB28 /* AIChatApp.swift */; };
 		ABDD30EC2D491BD900A5AB28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABDD30EB2D491BD900A5AB28 /* Assets.xcassets */; };
 		ABDD30F02D491BD900A5AB28 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABDD30EF2D491BD900A5AB28 /* Preview Assets.xcassets */; };
@@ -69,9 +72,21 @@
 		ABF6B2AB2D54689300B9D27A /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF6B2AA2D54689300B9D27A /* UserService.swift */; };
 		ABF6B2AD2D5468A100B9D27A /* MockUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF6B2AC2D5468A100B9D27A /* MockUserService.swift */; };
 		ABF6B2AF2D5468D300B9D27A /* FirestoreUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF6B2AE2D5468D300B9D27A /* FirestoreUserService.swift */; };
+		ABF6B2B22D54FC3A00B9D27A /* AIImageGeneratorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF6B2B12D54FC3A00B9D27A /* AIImageGeneratorService.swift */; };
+		ABF6B2B42D54FE1E00B9D27A /* MockAIImageGeneratorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF6B2B32D54FE1E00B9D27A /* MockAIImageGeneratorService.swift */; };
+		ABF6B2B62D54FE4400B9D27A /* GetImgAIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF6B2B52D54FE4400B9D27A /* GetImgAIService.swift */; };
+		ABF6B2B82D5514F100B9D27A /* AIImageGeneratorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF6B2B72D5514F100B9D27A /* AIImageGeneratorManager.swift */; };
+		ABF6B2BC2D551E6600B9D27A /* AvatarService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF6B2BB2D551E6600B9D27A /* AvatarService.swift */; };
+		ABF6B2BE2D55211200B9D27A /* FirestoreCollections.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF6B2BD2D55211200B9D27A /* FirestoreCollections.swift */; };
+		ABF6B2C52D554C3100B9D27A /* FirebaseStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF6B2C42D554C3100B9D27A /* FirebaseStorageService.swift */; };
+		ABF6B2C72D554E4700B9D27A /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = ABF6B2C62D554E4700B9D27A /* FirebaseStorage */; };
+		ABF6B2C92D555A7200B9D27A /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF6B2C82D555A7200B9D27A /* UIImage+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		ABCD0B312D557E66001F0EF7 /* MockAvatarService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAvatarService.swift; sourceTree = "<group>"; };
+		ABCD0B332D557E78001F0EF7 /* FirestoreAvatarService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreAvatarService.swift; sourceTree = "<group>"; };
+		ABCD0B352D557E87001F0EF7 /* AvatarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarManager.swift; sourceTree = "<group>"; };
 		ABDD30E42D491BD700A5AB28 /* AIChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AIChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABDD30E72D491BD700A5AB28 /* AIChatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIChatApp.swift; sourceTree = "<group>"; };
 		ABDD30EB2D491BD900A5AB28 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -133,6 +148,14 @@
 		ABF6B2AA2D54689300B9D27A /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		ABF6B2AC2D5468A100B9D27A /* MockUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserService.swift; sourceTree = "<group>"; };
 		ABF6B2AE2D5468D300B9D27A /* FirestoreUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreUserService.swift; sourceTree = "<group>"; };
+		ABF6B2B12D54FC3A00B9D27A /* AIImageGeneratorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIImageGeneratorService.swift; sourceTree = "<group>"; };
+		ABF6B2B32D54FE1E00B9D27A /* MockAIImageGeneratorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAIImageGeneratorService.swift; sourceTree = "<group>"; };
+		ABF6B2B52D54FE4400B9D27A /* GetImgAIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetImgAIService.swift; sourceTree = "<group>"; };
+		ABF6B2B72D5514F100B9D27A /* AIImageGeneratorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIImageGeneratorManager.swift; sourceTree = "<group>"; };
+		ABF6B2BB2D551E6600B9D27A /* AvatarService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarService.swift; sourceTree = "<group>"; };
+		ABF6B2BD2D55211200B9D27A /* FirestoreCollections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreCollections.swift; sourceTree = "<group>"; };
+		ABF6B2C42D554C3100B9D27A /* FirebaseStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageService.swift; sourceTree = "<group>"; };
+		ABF6B2C82D555A7200B9D27A /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +164,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABDD31222D49525600A5AB28 /* SDWebImageSwiftUI in Frameworks */,
+				ABF6B2C72D554E4700B9D27A /* FirebaseStorage in Frameworks */,
 				ABF6B2882D509AE100B9D27A /* FirebaseAuth in Frameworks */,
 				ABF6B29E2D53F7C200B9D27A /* FirebaseFirestore in Frameworks */,
 			);
@@ -317,6 +341,7 @@
 				ABDD31702D4D659700A5AB28 /* ViewSizeModifier.swift */,
 				ABDD31752D4D941800A5AB28 /* ErrorAlertModifier.swift */,
 				ABDD317C2D4E68A700A5AB28 /* ShowModalModifier.swift */,
+				ABF6B2BD2D55211200B9D27A /* FirestoreCollections.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -352,10 +377,12 @@
 		ABDD31312D4A80F600A5AB28 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				ABF6B2B92D551C7600B9D27A /* Image Generator */,
+				ABF6B2C02D554B4D00B9D27A /* Media Uploads */,
 				ABF6B2892D509D4B00B9D27A /* Auth */,
 				ABDD315B2D4BF1CD00A5AB28 /* User */,
-				ABDD31502D4BCCB900A5AB28 /* Chat */,
 				ABDD31322D4A810300A5AB28 /* Avatar */,
+				ABDD31502D4BCCB900A5AB28 /* Chat */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -363,6 +390,8 @@
 		ABDD31322D4A810300A5AB28 /* Avatar */ = {
 			isa = PBXGroup;
 			children = (
+				ABCD0B352D557E87001F0EF7 /* AvatarManager.swift */,
+				ABF6B2BA2D551CA700B9D27A /* Services */,
 				ABDD31352D4A812400A5AB28 /* Enums */,
 				ABDD31342D4A811C00A5AB28 /* Models */,
 			);
@@ -447,6 +476,7 @@
 				ABDD31602D4C27DE00A5AB28 /* Color+Extension.swift */,
 				ABDD31772D4D9D9E00A5AB28 /* Binding+Extension.swift */,
 				ABF6B2A72D544A7B00B9D27A /* DocumentReference+Extension.swift */,
+				ABF6B2C82D555A7200B9D27A /* UIImage+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -552,6 +582,51 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		ABF6B2B02D54FBBC00B9D27A /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				ABF6B2B12D54FC3A00B9D27A /* AIImageGeneratorService.swift */,
+				ABF6B2B32D54FE1E00B9D27A /* MockAIImageGeneratorService.swift */,
+				ABF6B2B52D54FE4400B9D27A /* GetImgAIService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		ABF6B2B92D551C7600B9D27A /* Image Generator */ = {
+			isa = PBXGroup;
+			children = (
+				ABF6B2B72D5514F100B9D27A /* AIImageGeneratorManager.swift */,
+				ABF6B2B02D54FBBC00B9D27A /* Services */,
+			);
+			path = "Image Generator";
+			sourceTree = "<group>";
+		};
+		ABF6B2BA2D551CA700B9D27A /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				ABF6B2BB2D551E6600B9D27A /* AvatarService.swift */,
+				ABCD0B312D557E66001F0EF7 /* MockAvatarService.swift */,
+				ABCD0B332D557E78001F0EF7 /* FirestoreAvatarService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		ABF6B2C02D554B4D00B9D27A /* Media Uploads */ = {
+			isa = PBXGroup;
+			children = (
+				ABF6B2C12D554B5B00B9D27A /* Services */,
+			);
+			path = "Media Uploads";
+			sourceTree = "<group>";
+		};
+		ABF6B2C12D554B5B00B9D27A /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				ABF6B2C42D554C3100B9D27A /* FirebaseStorageService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -572,6 +647,7 @@
 				ABDD31212D49525600A5AB28 /* SDWebImageSwiftUI */,
 				ABF6B2872D509AE100B9D27A /* FirebaseAuth */,
 				ABF6B29D2D53F7C200B9D27A /* FirebaseFirestore */,
+				ABF6B2C62D554E4700B9D27A /* FirebaseStorage */,
 			);
 			productName = AIChat;
 			productReference = ABDD30E42D491BD700A5AB28 /* AIChat.app */;
@@ -639,10 +715,12 @@
 				ABDD310D2D4937FA00A5AB28 /* ExploreView.swift in Sources */,
 				ABDD311B2D4945CE00A5AB28 /* MainButtonStyle.swift in Sources */,
 				ABDD30FF2D49315C00A5AB28 /* AppViewBuilder.swift in Sources */,
+				ABF6B2BE2D55211200B9D27A /* FirestoreCollections.swift in Sources */,
 				ABDD31462D4AA4A900A5AB28 /* ImageTextGradientStyle.swift in Sources */,
 				ABDD31442D4AA16500A5AB28 /* CategoryCell.swift in Sources */,
 				ABDD31492D4AC09400A5AB28 /* PopularCell.swift in Sources */,
 				ABDD310A2D49366D00A5AB28 /* TabBarView.swift in Sources */,
+				ABF6B2B82D5514F100B9D27A /* AIImageGeneratorManager.swift in Sources */,
 				ABF6B2942D53BE6900B9D27A /* UserAuthInfo.swift in Sources */,
 				ABDD31762D4D941800A5AB28 /* ErrorAlertModifier.swift in Sources */,
 				ABDD31372D4A818800A5AB28 /* CharacterOption.swift in Sources */,
@@ -657,8 +735,10 @@
 				ABF6B2A82D544A7B00B9D27A /* DocumentReference+Extension.swift in Sources */,
 				ABDD30FD2D492A3B00A5AB28 /* AppView.swift in Sources */,
 				ABDD31102D493BC800A5AB28 /* WelcomeView.swift in Sources */,
+				ABF6B2C92D555A7200B9D27A /* UIImage+Extension.swift in Sources */,
 				ABDD311E2D494B8C00A5AB28 /* SettingsView.swift in Sources */,
 				ABDD314F2D4ACD3C00A5AB28 /* ButtonScaleEffectStyle.swift in Sources */,
+				ABCD0B362D557E87001F0EF7 /* AvatarManager.swift in Sources */,
 				ABDD31302D4A79A000A5AB28 /* HeroCell.swift in Sources */,
 				ABDD31632D4C2D1C00A5AB28 /* ListStyle.swift in Sources */,
 				ABDD313D2D4A828900A5AB28 /* AvatarModel.swift in Sources */,
@@ -675,19 +755,26 @@
 				ABDD30F72D49235C00A5AB28 /* NOTES.swift in Sources */,
 				ABDD31062D49363500A5AB28 /* ProfileView.swift in Sources */,
 				ABDD317D2D4E68A700A5AB28 /* ShowModalModifier.swift in Sources */,
+				ABF6B2B62D54FE4400B9D27A /* GetImgAIService.swift in Sources */,
 				ABDD317B2D4E676500A5AB28 /* AvatarProfileModal.swift in Sources */,
 				ABDD30E82D491BD700A5AB28 /* AIChatApp.swift in Sources */,
 				ABF6B2A02D53F95100B9D27A /* UserManager.swift in Sources */,
+				ABCD0B342D557E78001F0EF7 /* FirestoreAvatarService.swift in Sources */,
 				ABDD312A2D497F9500A5AB28 /* OnboardingIntroView.swift in Sources */,
 				ABDD31812D4E84EB00A5AB28 /* CategoryListView.swift in Sources */,
 				ABF6B2AF2D5468D300B9D27A /* FirestoreUserService.swift in Sources */,
 				ABDD316B2D4D427C00A5AB28 /* ChatMessageCell.swift in Sources */,
+				ABCD0B322D557E66001F0EF7 /* MockAvatarService.swift in Sources */,
 				ABDD31172D49455400A5AB28 /* OnboardingCompletedView.swift in Sources */,
 				ABDD31612D4C27DE00A5AB28 /* Color+Extension.swift in Sources */,
 				ABDD31402D4A8CC700A5AB28 /* CarouselView.swift in Sources */,
+				ABF6B2BC2D551E6600B9D27A /* AvatarService.swift in Sources */,
 				ABDD31552D4BD09500A5AB28 /* ChatMessageModel.swift in Sources */,
 				ABF6B2962D53BF7E00B9D27A /* AuthService.swift in Sources */,
+				ABF6B2B22D54FC3A00B9D27A /* AIImageGeneratorService.swift in Sources */,
 				ABF6B2982D53C80500B9D27A /* AuthManager.swift in Sources */,
+				ABF6B2B42D54FE1E00B9D27A /* MockAIImageGeneratorService.swift in Sources */,
+				ABF6B2C52D554C3100B9D27A /* FirebaseStorageService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -945,6 +1032,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = ABF6B2862D509AE100B9D27A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
+		};
+		ABF6B2C62D554E4700B9D27A /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ABF6B2862D509AE100B9D27A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

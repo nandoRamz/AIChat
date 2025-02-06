@@ -26,7 +26,7 @@ struct ChatMessageListView: View {
         .animation(.easeInOut, value: messages.count)
         .showModal(isPresented: $isShowingAvatarModal) {
             AvatarProfileModal(
-                imageUrlString: avatar.profileImageName,
+                imageUrlString: avatar.imageUrl,
                 title: avatar.name,
                 subtitle: avatar.characterDescription()
             )
@@ -80,7 +80,7 @@ extension ChatMessageListView {
             LazyVStack(spacing: 16) {
                 ForEach(messages) { message in
                     ChatMessageCell(
-                        imageUrlString: avatar.profileImageName,
+                        imageUrlString: avatar.imageUrl,
                         text: message.content ?? "" ,
                         foregroundStyle: getMessageForegroundStyle(message),
                         background: getMessageBackground(message),
@@ -185,7 +185,7 @@ extension ChatMessageListView {
 
 /*
  VStack {
-     ImageLoaderView(urlString: avatar.profileImageName)
+     ImageLoaderView(urlString: avatar.imageUrl)
          .aspectRatio(1, contentMode: .fit)
      
      VStack(alignment: .leading) {

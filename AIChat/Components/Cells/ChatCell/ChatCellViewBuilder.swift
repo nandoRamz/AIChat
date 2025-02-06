@@ -19,7 +19,7 @@ struct ChatCellViewBuilder: View {
     var getLastChatMessage: () async -> ChatMessageModel?
     
     var body: some View {
-        let imageUrlString = avatar?.profileImageName
+        let imageUrlString = avatar?.imageUrl
         let title = isLoading() ? "xxxx xxxx" : avatar?.name ?? ""
         let subTitle = isLoading() ? "xxxx xxxx xxxx xxxx" : lastChatMessage?.content ?? ""
         let isShowingBadge = isLoading() ? false : isShowingBadge()

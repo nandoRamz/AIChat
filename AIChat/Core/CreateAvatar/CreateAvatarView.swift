@@ -9,6 +9,9 @@ import SwiftUI
 
 struct CreateAvatarView: View {
     @Environment(\.dismiss) private var dismiss
+    @Environment(AIImageGeneratorManager.self) private var aiImageGeneratorManager
+    @Environment(AvatarManager.self) private var avatarManager
+    @Environment(AuthManager.self) private var authManager
     
     @State private var name: String = ""
     @State private var character: CharacterOption = .woman
@@ -17,6 +20,7 @@ struct CreateAvatarView: View {
     @State private var isGeneratingImage: Bool = false
     @State private var generatedImage: UIImage?
     @State private var isSaving: Bool = false
+    @State private var isPrivate: Bool = false
     
     var body: some View {
         ScrollView {
@@ -24,6 +28,8 @@ struct CreateAvatarView: View {
                 nameSection
                 
                 characterSection
+                
+                privacySection
                 
                 imageSection
                 
@@ -40,13 +46,21 @@ struct CreateAvatarView: View {
                 }
             }
         }
-        
     }
 }
 
 //MARK: - Views
 ///Views
 extension CreateAvatarView {
+    private var privacySection: some View {
+        Toggle("Private", isOn: $isPrivate)
+            .padding(.vertical, 11)
+            .padding(.horizontal)
+            .background()
+            .clipShape(.rect(cornerRadius: 15))
+            .padding(.horizontal)
+    }
+    
     private var actionsSection: some View {
         Button(action: { onSavePress() }) {
             Text("Save")
@@ -57,29 +71,32 @@ extension CreateAvatarView {
         .disabled(generatedImage == nil)
     }
     
+    
+    
     private var imageSection: some View {
         VStack(spacing: 16) {
             Circle()
                 .fill(.quinary)
                 .frame(width: 200, height: 200)
                 .overlay {
-                    if let _ = generatedImage {
-                        Image(.appIconInternal)
+                    if let generatedImage {
+                        Image(uiImage: generatedImage)
                             .resizable()
                             .scaledToFill()
-                        
                     }
                 }
                 .clipShape(.circle)
+                .animation(.easeInOut, value: generatedImage)
                 
             
             Button(action: { onGenerateImagePress() }) {
                 Group {
                     if isGeneratingImage { ProgressView().tint(.accent) }
                     else {
-                        Text("Genernate Image")
+                        Text(generatedImage == nil ? "Genernate Image" : "Regenerate Image")
                     }
                 }
+                
                 .frame(height: 28)
             }
             .disabled(name.isEmpty)
@@ -166,10 +183,10 @@ extension CreateAvatarView {
     private func onGenerateImagePress() {
         if isGeneratingImage { return }
         isGeneratingImage.toggle()
+        generatedImage = nil
         
         Task {
-            try? await Task.sleep(for: .seconds(3))
-            generatedImage = UIImage(systemName: "heart")
+            generatedImage = try await aiImageGeneratorManager.generateImage(from: "empty prompt")
             isGeneratingImage.toggle()
         }
     }
@@ -178,10 +195,33 @@ extension CreateAvatarView {
         if isSaving { return }
         isSaving.toggle()
         
-        Task {
-            try? await Task.sleep(for: .seconds(5))
+        Task { @MainActor in
+            do {
+                let newAvatar = AvatarModel(
+                    id: UUID().uuidString,
+                    name: name,
+                    characterOption: character,
+                    characterAction: characterAction,
+                    characterLocation: characterLocation,
+                    imageUrl: nil,
+                    authorId: try authManager.getId(),
+                    timestamp: .now
+                )
+                
+                guard let generatedImage else { return }
+                try await avatarManager.save(
+                    newAvatar,
+                    withImage: generatedImage,
+                    isPrivate: isPrivate
+                )
+                print("Successfully added avatar!")
+            }
+            catch {
+                print("Error saving avatar: \(error)")
+            }
+            
             isSaving.toggle()
-            await onDismissPress()
+            dismiss()
         }
     }
 }
@@ -193,25 +233,12 @@ extension CreateAvatarView {
         return !name.isEmpty && generatedImage != nil
     }
 }
-
+ 
 #Preview {
     NavigationStack {
-//        CreateAvatarView()
-        ProfileView()
+        CreateAvatarView()
+            .environment(AuthManager(service: MockAuthService(user: .sample())))
+            .environment(UserManager(service: MockUserService()))
+            .environment(AIImageGeneratorManager(service: MockAIImageGeneratorService()))
     }
 }
-
-/*
- ///Would perfer the user to be able to add a description instead of preselecting values
- @State private var description: String = ""
-
- 
- VStack(spacing: 0) {
-     TextField("Description", text: $description, axis: .vertical)
-         .padding(.vertical, 11)
-         .frame(maxHeight: 250)
- }
- .padding(.horizontal)
- .background()
- .clipShape(.rect(cornerRadius: 15))
- */

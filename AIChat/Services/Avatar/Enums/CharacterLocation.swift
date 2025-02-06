@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum CharacterLocation: String, CaseIterable, Hashable  {
+enum CharacterLocation: String, CaseIterable, Hashable, Codable  {
     case park, mall, museum, city, desert, forest, space
     
     static var `default`: Self { .space }

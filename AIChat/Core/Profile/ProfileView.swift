@@ -108,7 +108,7 @@ extension ProfileView {
                     LazyVStack(spacing: 0) {
                         ForEach(myAvatars, id: \.self) { avatar in
                             PopularCell(
-                                imageUrlString: avatar.profileImageName,
+                                imageUrlString: avatar.imageUrl,
                                 title: avatar.name,
                                 subTitle: nil
                             )

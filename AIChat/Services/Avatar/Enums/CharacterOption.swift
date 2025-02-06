@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum CharacterOption: String, CaseIterable, Hashable  {
+enum CharacterOption: String, CaseIterable, Hashable, Codable  {
     case man, woman, alien, dog, cat
     
     static var `default`: Self { .man }

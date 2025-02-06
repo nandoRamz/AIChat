@@ -40,7 +40,7 @@ extension ExploreView {
             LazyVStack(spacing: 0) {
                 ForEach(avatars, id: \.self) { avatar in
                     PopularCell(
-                        imageUrlString: avatar.profileImageName,
+                        imageUrlString: avatar.imageUrl,
                         title: avatar.name,
                         subTitle: avatar.characterDescription()
                     )
@@ -92,7 +92,7 @@ extension ExploreView {
                     HeroCell(
                         title: item.name,
                         subTitle: item.characterDescription(),
-                        imageName: item.profileImageName
+                        imageName: item.imageUrl
                     )
                     .frame(height: 200)
                 }

@@ -83,7 +83,7 @@ extension CarouselView {
                     HeroCell(
                         title: item.name,
                         subTitle: item.characterDescription(),
-                        imageName: item.profileImageName
+                        imageName: item.imageUrl
                     )
                 }
             )

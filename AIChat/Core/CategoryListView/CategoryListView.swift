@@ -25,7 +25,7 @@ struct CategoryListView: View {
             LazyVStack(spacing: 0) {
                 ForEach(avatars, id: \.self) { avatar in
                     PopularCell(
-                        imageUrlString: avatar.profileImageName,
+                        imageUrlString: avatar.imageUrl,
                         title: avatar.name,
                         subTitle: avatar.characterDescription()
                     )
