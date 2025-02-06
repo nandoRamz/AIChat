@@ -7,11 +7,56 @@
 
 import SwiftUI
 
-struct UserModel {
-    let userId: String
-    let didCompleteOnboarding: Bool
+struct UserModel: Codable {
+    let id: String
+    let email: String?
+    let isAnonymous: Bool?
+    let lastActive: Date
+    let memberSince: Date
+    let name: String? = nil 
+    
+    let didCompleteOnboarding: Bool?
     let profileColorHex: String?
-    let timestamp: Date
+    
+    init(
+        id: String,
+        email: String? = nil,
+        isAnonymous: Bool? = nil,
+        lastActive: Date,
+        memberSince: Date,
+        didCompleteOnboarding: Bool? = nil,
+        profileColorHex: String?
+    ) {
+        self.id = id
+        self.email = email
+        self.isAnonymous = isAnonymous
+        self.lastActive = lastActive
+        self.memberSince = memberSince
+        self.didCompleteOnboarding = didCompleteOnboarding
+        self.profileColorHex = profileColorHex
+    }
+    
+    static func createNewUser(from authInfo: UserAuthInfo) -> Self {
+        .init(
+            id: authInfo.uid,
+            email: authInfo.email,
+            isAnonymous: authInfo.isAnonymous,
+            lastActive: .now,
+            memberSince: .now,
+            didCompleteOnboarding: nil,
+            profileColorHex: nil
+        )
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case email
+        case isAnonymous = "is_anonymous"
+        case lastActive = "last_active"
+        case memberSince = "member_since"
+        case didCompleteOnboarding = "did_complete_onboarding"
+        case profileColorHex = "profile_color_hex"
+    }
 }
 
 //MARK: - Methods
@@ -31,29 +76,32 @@ extension UserModel {
     
     static let samples: [UserModel] = [
         UserModel(
-            userId: "user_456",
+            id: "user_456",
+            lastActive: .now,
+            memberSince: Date(),
             didCompleteOnboarding: true,
-            profileColorHex: "#4287f5",
-
-            timestamp: Date()
+            profileColorHex: "#4287f5"
         ),
         UserModel(
-            userId: "user_002",
+            id: "user_002",
+            lastActive: .now,
+            memberSince: Date().addingTimeInterval(-86400),
             didCompleteOnboarding: false,
-            profileColorHex: "#FF5733",
-            timestamp: Date().addingTimeInterval(-86400)
+            profileColorHex: "#FF5733"
         ),
         UserModel(
-            userId: "user_003",
+            id: "user_003",
+            lastActive: .now,
+            memberSince: Date().addingTimeInterval(-604800),
             didCompleteOnboarding: true,
-            profileColorHex: nil,
-            timestamp: Date().addingTimeInterval(-604800)
+            profileColorHex: nil
         ),
         UserModel(
-            userId: "user_004",
+            id: "user_004",
+            lastActive: .now,
+            memberSince: Date().addingTimeInterval(-2592000),
             didCompleteOnboarding: false,
-            profileColorHex: "#2ecc71",
-            timestamp: Date().addingTimeInterval(-2592000)
+            profileColorHex: "#2ecc71"
         )
     ]
 }

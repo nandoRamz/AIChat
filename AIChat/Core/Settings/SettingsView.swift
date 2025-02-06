@@ -9,6 +9,9 @@ import SwiftUI
 
 struct SettingsView: View {
     @Environment(AppState.self) private var appState
+    @Environment(AuthManager.self) private var authManager
+    @Environment(UserManager.self) private var userManager
+    
     var body: some View {
         ScrollView {
             VStack(spacing: 32) {
@@ -28,6 +31,8 @@ struct SettingsView: View {
                                     isShowingChevron: isShowingChevron(for: item)
                                 )
                                 .listStyle(for: item, in: group.items)
+                                .background(.primary.opacity(0.0001))
+                                .onTapGesture { onSettingPress(item) }
                             }
                         }
                         .padding(.horizontal)
@@ -37,10 +42,10 @@ struct SettingsView: View {
                 }
             }
             .padding(.all)
-            
         }
         .background(Color(uiColor: .secondarySystemBackground))
         .navigationTitle("Settings")
+        
     }
 }
 
@@ -48,12 +53,6 @@ struct SettingsView: View {
 //MARK: - Views
 ///Views
 extension SettingsView {
-    private var logOutButton: some View {
-        Button(action: { onSignOutPress() }) {
-            Text("Log Out")
-        }
-    }
-    
     private func navButton(
         title: String,
         subTitle: String? = nil,
@@ -90,7 +89,29 @@ extension SettingsView {
 ///Actions
 extension SettingsView {
     private func onSignOutPress() {
-        appState.updateViewState(isSignedIn: false)
+        userManager.signOut()
+        try? authManager.signOut()
+    }
+    
+    private func onDeleteAccountPress() {
+        Task {
+            do {
+                let userId = try authManager.getId()
+                try await userManager.deleteUser(with: userId)
+                try await authManager.deleteAccount()
+            }
+            catch {
+                print("Error with deleting account")
+            }
+        }
+    }
+    
+    private func onSettingPress(_ setting: Setting) {
+        switch setting {
+        case .logOut: onSignOutPress()
+        case .deleteAccount: onDeleteAccountPress()
+        default:  print("\(setting.rawValue) was pressed")
+        }
     }
 }
 
@@ -151,6 +172,8 @@ extension SettingsView {
     NavigationStack {
         SettingsView()
             .environment(AppState())
+            .environment(UserManager(service: FirestoreUserService()))
+            .environment(AuthManager(service: MockAuthService()))//Change this later
     }
 }
 

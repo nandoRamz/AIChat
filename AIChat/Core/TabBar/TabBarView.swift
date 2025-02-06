@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct TabBarView: View {
+    @Environment(UserManager.self) private var userManager
+    @Environment(AuthManager.self) private var authManager
+    
     var body: some View {
         TabView {
             ExploreView()
@@ -19,9 +22,17 @@ struct TabBarView: View {
             ProfileView()
                 .tabItem { Label("Profile", systemImage: "person") }
         }
+        .onAppear {
+            if let userId = authManager.auth?.uid {
+                userManager.addStream(to: userId)
+            }
+        }
+        
     }
 }
 
 #Preview {
     TabBarView()
+        .environment(UserManager(service: FirestoreUserService()))
+        .environment(AuthManager(service: MockAuthService(user: nil)))
 }

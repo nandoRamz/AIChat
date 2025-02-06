@@ -3,17 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>API_KEY</key>
-	<string>AIzaSyAVCU4XLu_TYyf4iGEGHgtJFOZ2DB9ZXbA</string>
+	<string>AIzaSyCzEGBthv_4fsyl1PcoGfZJeDt1Y9Pwq80</string>
 	<key>GCM_SENDER_ID</key>
-	<string>1008154237143</string>
+	<string>350711219066</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>nandoramz.AIChat</string>
 	<key>PROJECT_ID</key>
-	<string>chat-ai-98779</string>
+	<string>instagram-practice-e72e3</string>
 	<key>STORAGE_BUCKET</key>
-	<string>chat-ai-98779.firebasestorage.app</string>
+	<string>instagram-practice-e72e3.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:1008154237143:ios:b425d7255e23431a167892</string>
+	<string>1:350711219066:ios:3d168facb02cd47cb9ccc3</string>
 </dict>
 </plist>

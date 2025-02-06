@@ -9,6 +9,9 @@ import SwiftUI
 
 struct OnboardingCompletedView: View {
     @Environment(AppState.self) private var appState
+    @Environment(AuthManager.self) private var authManager
+    @Environment(UserManager.self) private var userManager
+    
     @State private var isPerformingTask: Bool = false
     var selectedColor: Color = .teal
     
@@ -59,12 +62,15 @@ extension OnboardingCompletedView {
         isPerformingTask.toggle()
         
         Task {
-            try await Task.sleep(for: .seconds(1))
-            isPerformingTask.toggle()
-            
-            appState.updateViewState(isSignedIn: true)
+            do {
+                let authInfo = try await authManager.signInAnonymously()
+                let newUser = UserModel.createNewUser(from: authInfo)
+                try await userManager.save(newUser)
+            }
+            catch {
+                print("Error on creating a new user: \(error.localizedDescription)")
+            }
         }
-        
     }
 }
 
@@ -72,3 +78,16 @@ extension OnboardingCompletedView {
     OnboardingCompletedView()
         .environment(AppState())
 }
+
+
+/*
+ //        if isPerformingTask { return }
+ //        isPerformingTask.toggle()
+ //
+ //        Task {
+ //            try await Task.sleep(for: .seconds(1))
+ //            isPerformingTask.toggle()
+ //
+ //            appState.updateViewState(isSignedIn: true)
+ //        }
+ */

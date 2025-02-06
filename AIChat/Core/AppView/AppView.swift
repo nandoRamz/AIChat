@@ -11,11 +11,11 @@ struct AppView: View {
     @Environment(AuthManager.self) private var authManager
     
     @State var appState = AppState()
-    @State private var isPerformingTask: Bool = false
+    @State private var isPerformingTask: Bool = true
     
     var body: some View {
         AppViewBuilder(
-            isSignedIn: appState.isSignedIn,
+            isSignedIn: authManager.auth != nil,
             isPerformingTask: isPerformingTask,
             tabBarView: { TabBarView() },
             onboardingView: { WelcomeView() }
@@ -31,16 +31,13 @@ struct AppView: View {
 ///Methods
 extension AppView {
     private func checkUserStatus() async {
-        if let user = authManager.auth {
+        if let auth = authManager.auth {
+            //TODO: Fetch user here and populate
+            isPerformingTask.toggle()
         }
         else {
-            do {
-                let result = try await authManager.signInAnonymously()
-                print("Sign in Anonymously Success: \(result.uid)")
-            }
-            catch {
-                print("Error: Sign in Anonymously")
-            }
+            print("Not signed in")
+            isPerformingTask.toggle()
         }
     }
 }
