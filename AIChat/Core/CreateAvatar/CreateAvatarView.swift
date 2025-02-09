@@ -36,6 +36,8 @@ struct CreateAvatarView: View {
                 actionsSection
             }
         }
+        //TODO: Remove
+        .onAppear { generatedImage = UIImage(resource: .generatedAvatar) }
         .background(Color(uiColor: .secondarySystemBackground))
         .navigationTitle("Create Avatar")
         .toolbar {
@@ -204,15 +206,15 @@ extension CreateAvatarView {
                     characterAction: characterAction,
                     characterLocation: characterLocation,
                     imageUrl: nil,
-                    authorId: try authManager.getId(),
-                    timestamp: .now
+                    createdBy: try authManager.getId(),
+                    timestamp: .now,
+                    isPrivate: isPrivate
                 )
                 
                 guard let generatedImage else { return }
                 try await avatarManager.save(
                     newAvatar,
-                    withImage: generatedImage,
-                    isPrivate: isPrivate
+                    withImage: generatedImage
                 )
                 print("Successfully added avatar!")
             }

@@ -11,7 +11,7 @@ import Foundation
 @Observable
 class UserManager {
     private let service: UserService
-    private var currentUser: UserModel?
+    private(set) var currentUser: UserModel?
     private var listenerTask: Task<Void, Error>?
     
     init(service: UserService) {
@@ -48,7 +48,3 @@ class UserManager {
         signOut()
     }
 }
-
-import Firebase
-
-

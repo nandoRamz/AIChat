@@ -11,6 +11,7 @@ struct PopularCell: View {
     var imageUrlString: String? = Constants.randomImageUrlString
     var title: String? = "Some Title"
     var subTitle: String? = "Some Sub Title"
+    var isLoading: Bool = false
     
     var body: some View {
         HStack(spacing: 8) {
@@ -27,14 +28,16 @@ extension PopularCell {
     private var infoView: some View {
         VStack(alignment: .leading) {
             if let title {
-                Text(title)
+                Text(isLoading ? "xxxx-xxxx-xxxx" : title)
                     .font(.headline)
+                    .redacted(reason: isLoading ? .placeholder : [])
             }
             
             if let subTitle {
-                Text(subTitle)
+                Text(isLoading ? "xxxx-xxxx-xxxx-xxxx-xxxx" : subTitle)
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
+                    .redacted(reason: isLoading ? .placeholder : [])
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -42,11 +45,15 @@ extension PopularCell {
     
     private var imageView: some View {
         ZStack {
-            Rectangle()
-                .fill(.quinary)
-            if let imageUrlString {
-                ImageLoaderView(urlString: imageUrlString)
-                
+            if isLoading {
+                Rectangle()
+                    .fill(.quinary)
+            }
+            else {
+                if let imageUrlString {
+                    ImageLoaderView(urlString: imageUrlString)
+                    
+                }
             }
         }
         .frame(width: 60, height: 60)
@@ -59,12 +66,21 @@ extension PopularCell {
         Color(uiColor: .systemGroupedBackground)
             .ignoresSafeArea()
         
-        PopularCell()
-            .padding(.all)
-            .background()
-            .padding(.horizontal)
-            .onTapGesture {
-                print("KKKKKKK")
-            }
+        VStack {
+            PopularCell()
+                .padding(.all)
+                .background()
+                .padding(.horizontal)
+            
+            PopularCell(isLoading: false)
+                .padding(.all)
+                .background()
+                .padding(.horizontal)
+            
+            PopularCell()
+                .padding(.all)
+                .background()
+                .padding(.horizontal)
+        }
     }
 }

@@ -17,9 +17,9 @@ struct ViewSizeModifier: ViewModifier {
                     let size = $0.size
                     Color.clear
                         .preference(key: ViewSizePreferenceKey.self, value: size)
-                        .onPreferenceChange(ViewSizePreferenceKey.self, perform: { size in
-                            self.size = size
-                        })
+                        .onPreferenceChange(ViewSizePreferenceKey.self) { value in
+                            DispatchQueue.main.async { self.size = value }
+                        }
                 }
             )
     }

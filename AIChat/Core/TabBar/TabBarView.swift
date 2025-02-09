@@ -10,6 +10,7 @@ import SwiftUI
 struct TabBarView: View {
     @Environment(UserManager.self) private var userManager
     @Environment(AuthManager.self) private var authManager
+    @Environment(AvatarManager.self) private var avatarManager
     
     var body: some View {
         TabView {
@@ -27,7 +28,6 @@ struct TabBarView: View {
                 userManager.addStream(to: userId)
             }
         }
-        
     }
 }
 

@@ -112,7 +112,7 @@ extension ChatMessageListView {
             let newMessage = ChatMessageModel(
                 id: UUID().uuidString,
                 chatId: UUID().uuidString,
-                authorId: currentUser?.id,
+                createdBy: currentUser?.id,
                 content: messageText,
                 seenByIds: [],
                 timestamp: .now
@@ -133,7 +133,7 @@ extension ChatMessageListView {
 ///Methods
 extension ChatMessageListView {
     private func isCurrentUserMessage(_ message: ChatMessageModel) -> Bool {
-        message.authorId == currentUser?.id
+        message.createdBy == currentUser?.id
     }
     
     private func getMessageBackground(_ message: ChatMessageModel) -> AnyShapeStyle {

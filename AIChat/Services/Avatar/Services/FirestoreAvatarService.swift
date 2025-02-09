@@ -9,13 +9,11 @@ import SwiftUI
 import FirebaseFirestore
 
 struct FirestoreAvatarService: AvatarService {
-    var encoder = Firestore.Encoder()
+    private let encoder = Firestore.Encoder()
+    private let decoder = Firestore.Decoder()
+    private let avatarsCollection = Firestore.firestore().collection(FirestoreCollections.avatars)
     
-    var avatarsCollection = Firestore.firestore().collection(FirestoreCollections.avatars)
-    var usersCollections = Firestore.firestore().collection(FirestoreCollections.users)
-    
-    func save(_ avatar: AvatarModel, withImage image: UIImage, isPrivate: Bool) async throws {
-        guard let userId = avatar.authorId else { return }
+    func save(_ avatar: AvatarModel, withImage image: UIImage) async throws {
         var mutableCopy = avatar
         let timestamp = Timestamp()
         
@@ -25,16 +23,120 @@ struct FirestoreAvatarService: AvatarService {
         let newDate = timestamp.dateValue()
         mutableCopy.updateTimestamp(with: newDate)
         
-        let reference = switch isPrivate {
-        case true: usersCollections.document(userId).collection(FirestoreCollections.avatars)
-        case false: avatarsCollection
-        }
-        
         let imagePath = "avatars/\(newId)"
         let imageUrl = try await FirebaseStorageService().saveImage(image, to: imagePath)
         mutableCopy.updateImageUrl(with: imageUrl.absoluteString)
         
         let data = try encoder.encode(mutableCopy)
-        try await reference.document(newId).setData(data, merge: true)
+        try await avatarsCollection.document(newId).setData(data, merge: true)
     }
+    
+    func getFeaturedAvatars() async throws -> [AvatarModel] {
+        let avatars = try await avatarsCollection
+            .whereField(AvatarModelKeys.isActive.rawValue, isEqualTo: true)
+            .whereField(AvatarModelKeys.isPrivate.rawValue, isEqualTo: false)
+            .order(by: AvatarModelKeys.timestamp.rawValue, descending: true)
+            .limit(to: 5)
+            .getDocuments()
+            .docType(AvatarModel.self)
+        
+        return avatars.shuffled()
+    }
+    
+    func getPopularAvatars() async throws -> [AvatarModel] {
+        let avatars = try await avatarsCollection
+            .whereField(AvatarModelKeys.isActive.rawValue, isEqualTo: true)
+            .whereField(AvatarModelKeys.isPrivate.rawValue, isEqualTo: false)
+            .order(by: AvatarModelKeys.timestamp.rawValue, descending: true)
+            .limit(to: 25)
+            .getDocuments()
+            .docType(AvatarModel.self)
+        
+        return avatars.shuffled()
+    }
+    
+    func getAvatars(for category: CharacterOption) async throws -> [AvatarModel] {
+        let avatars = try await avatarsCollection
+            .whereField(AvatarModelKeys.isActive.rawValue, isEqualTo: true)
+            .whereField(AvatarModelKeys.isPrivate.rawValue, isEqualTo: false)
+            .whereField(AvatarModelKeys.characterOption.rawValue, isEqualTo: category)
+            .order(by: AvatarModelKeys.timestamp.rawValue, descending: true)
+            .limit(to: 5)
+            .getDocuments()
+            .docType(AvatarModel.self)
+        
+        return avatars.shuffled()
+    }
+    
+    func getAvatars(for userId: String) async throws -> [AvatarModel] {
+        let avatars = try await avatarsCollection
+            .whereField(AvatarModelKeys.createdBy.rawValue, isEqualTo: userId)
+            .whereField(AvatarModelKeys.isActive.rawValue, isEqualTo: true)
+            .order(by: AvatarModelKeys.timestamp.rawValue, descending: true)
+            .limit(to: 25)
+            .getDocuments()
+            .docType(AvatarModel.self)
+        
+        return avatars
+    }
+    
+    func updateIsPrivateField(for avatarId: String, with value: Bool) async throws {
+        try await avatarsCollection.document(avatarId).setData([
+            AvatarModelKeys.isPrivate.rawValue: value
+        ], merge: true )
+    }
+    
+    func updateIsActiveField(for avatarId: String, with value: Bool) async throws {
+        try await avatarsCollection.document(avatarId).setData([
+            AvatarModelKeys.isActive.rawValue: false
+        ], merge: true)
+    }
+}
+
+
+//MARK: - Private
+///Private
+extension FirestoreAvatarService {
+//    func removeCreatorsId(from avatarId: String) async throws {
+//        guard let matchingDoc = avatarsCollection
+//            .whereField(AvatarModelKeys.id.rawValue, isEqualTo: avatarId)
+//            .limit(to: 1)
+//            .getDocuments().documents.first
+//        else {
+//            return
+//        }
+//        
+//        let path = matchingDoc.reference.path
+//        let isPrivate = path.contains(FirestoreCollections.users)
+//        
+//        if isPrivate {
+//            try await matchingDoc.reference.delete()
+//        }
+//        else {
+//            try await matchingDoc.reference.updateData([
+//                AvatarModelKeys.createdBy.rawValue: NSNull()
+//            ])
+//        }
+//    }
+    
+//    private func updateAggregatedCount(for userId: String, by num: Double) async throws {
+//        let key = "value"
+//        do {
+//            try await avatarAggregatedCountDoc(for: userId)
+//                .updateData([
+//                    key: FieldValue.increment(num)
+//                ])
+//        }
+//        catch {
+//            try await avatarAggregatedCountDoc(for: userId)
+//                .setData([
+//                    key: FieldValue.increment(num)
+//                ])
+//        }
+//    }
+//
+//    private func avatarAggregatedCountDoc(for userId: String) -> DocumentReference {
+//        usersCollections.document(userId)
+//            .collection(FirestoreCollections.avatars).document("aggregated_count")
+//    }
 }

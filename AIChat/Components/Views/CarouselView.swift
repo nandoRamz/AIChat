@@ -45,7 +45,7 @@ extension CarouselView {
     
     private var itemsScrollView: some View {
         ScrollView(.horizontal) {
-            LazyHStack(spacing: itemsSpacing) {
+            HStack(spacing: itemsSpacing) {
                 ForEach(items, id: \.self) { item in
                     content(item)
                         .id(item)
@@ -80,8 +80,8 @@ extension CarouselView {
                 items: AvatarModel.samples,
                 scrollTargetBehavior: .viewAligned, 
                 content: { item in
-                    HeroCell(
-                        title: item.name,
+                    FeatureCell(
+                        title: item.name ?? "",
                         subTitle: item.characterDescription(),
                         imageName: item.imageUrl
                     )

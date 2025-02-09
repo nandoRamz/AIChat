@@ -7,15 +7,43 @@
 
 import Foundation
 
-struct AvatarModel: Codable, Hashable {
+typealias AvatarModelKeys = AvatarModel.CodingKeys
+
+struct AvatarModel: Codable, Hashable, Identifiable {
     private(set) var id: String //
     let name: String?
     let characterOption: CharacterOption?
     let characterAction: CharacterAction?
     let characterLocation: CharacterLocation?
     private(set) var imageUrl: String?
-    let authorId: String? //
-    private(set) var timestamp: Date? //
+    let createdBy: String? //
+    private(set) var timestamp: Date?
+    let isActive: Bool
+    let isPrivate: Bool
+    
+    init(
+        id: String,
+        name: String?,
+        characterOption: CharacterOption?,
+        characterAction: CharacterAction?,
+        characterLocation: CharacterLocation?,
+        imageUrl: String? = nil,
+        createdBy: String?,
+        timestamp: Date = .now,
+        isActive: Bool = true,
+        isPrivate: Bool
+    ) {
+        self.id = id
+        self.name = name
+        self.characterOption = characterOption
+        self.characterAction = characterAction
+        self.characterLocation = characterLocation
+        self.imageUrl = imageUrl
+        self.createdBy = createdBy
+        self.timestamp = timestamp
+        self.isActive = isActive
+        self.isPrivate = isPrivate
+    }
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -24,8 +52,10 @@ struct AvatarModel: Codable, Hashable {
         case characterAction = "character_action"
         case characterLocation = "character_location"
         case imageUrl = "image_url"
-        case authorId = "created_by"
+        case createdBy = "created_by"
         case timestamp = "timestamp"
+        case isActive = "is_active"
+        case isPrivate = "is_private"
     }
 }
 
@@ -66,8 +96,9 @@ extension AvatarModel {
                 characterAction: .drinking,
                 characterLocation: .space,
                 imageUrl: Constants.randomImageUrlString,
-                authorId: UUID().uuidString,
-                timestamp: .now
+                createdBy: UUID().uuidString,
+                timestamp: .now,
+                isPrivate: true
             ),
             AvatarModel(
                 id: UUID().uuidString,
@@ -76,8 +107,9 @@ extension AvatarModel {
                 characterAction: .walking,
                 characterLocation: .park,
                 imageUrl: Constants.randomImageUrlString,
-                authorId: UUID().uuidString,
-                timestamp: .now
+                createdBy: UUID().uuidString,
+                timestamp: .now,
+                isPrivate: false
             ),
             AvatarModel(
                 id: UUID().uuidString,
@@ -86,8 +118,9 @@ extension AvatarModel {
                 characterAction: .relaxing,
                 characterLocation: .forest,
                 imageUrl: Constants.randomImageUrlString,
-                authorId: UUID().uuidString,
-                timestamp: .now
+                createdBy: UUID().uuidString,
+                timestamp: .now,
+                isPrivate: false
             ),
             AvatarModel(
                 id: UUID().uuidString,
@@ -96,8 +129,9 @@ extension AvatarModel {
                 characterAction: .sitting,
                 characterLocation: .museum,
                 imageUrl: Constants.randomImageUrlString,
-                authorId: UUID().uuidString,
-                timestamp: .now
+                createdBy: UUID().uuidString,
+                timestamp: .now,
+                isPrivate: false
             )
         ]
     }
