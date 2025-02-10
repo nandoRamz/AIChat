@@ -55,15 +55,6 @@ extension PopularAvatarSectionViewBuilder {
                 )
                 .padding(.vertical, 11)
             }
-            
-            if avatars.count < maxAvatars {
-                let n = maxAvatars - avatars.count
-                
-                ForEach(0..<n, id: \.self) { _ in
-                    redactedCell
-                        .opacity(0)
-                }
-            }
         }
         .padding(.vertical, 11)
         .padding(.horizontal)
@@ -74,23 +65,19 @@ extension PopularAvatarSectionViewBuilder {
     private var loadingView: some View {
         VStack(spacing: 0) {
             ForEach(0..<maxAvatars, id: \.self) { _ in
-                redactedCell
+                PopularCell(
+                    imageUrlString: "",
+                    title: "",
+                    subTitle: "",
+                    isLoading: true
+                )
+                .padding(.vertical, 11)
             }
         }
         .padding(.vertical, 11)
         .padding(.horizontal)
         .background(isDarkMode ? .ultraThinMaterial : .bar)
         .clipShape(.rect(cornerRadius: 15))
-    }
-    
-    private var redactedCell: some View {
-        PopularCell(
-            imageUrlString: "",
-            title: "",
-            subTitle: "",
-            isLoading: true
-        )
-        .padding(.vertical, 11)
     }
 }
 

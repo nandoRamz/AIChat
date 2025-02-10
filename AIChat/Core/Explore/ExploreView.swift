@@ -9,6 +9,10 @@ import SwiftUI
 
 struct ExploreView: View {
     @Environment(AvatarManager.self) private var avatarManager
+    @State private var secondsLoading = 0
+    private var isShowingScreen: Bool {
+        !isLoadingPopularAvatars && !isLoadingFeaturedAvatars && !isLoadingAvatarCategories
+    }
     
     @State private var avatars = AvatarModel.samples
     @State private var featureAvatars: [AvatarModel] = []
@@ -18,24 +22,48 @@ struct ExploreView: View {
     @State private var popularAvatars: [AvatarModel] = []
     @State private var isLoadingPopularAvatars: Bool = true
     
+    
     var body: some View {
         NavigationStack {
-            ScrollView {
-                VStack(spacing: 32) {
-                    featureAvatarsView
-                    
-                    categoriesView
-                    
-                    popularView
+            ZStack {
+                if isShowingScreen {
+                    ScrollView {
+                        VStack(spacing: 32) {
+                            featureAvatarsView
+                            
+                            categoriesView
+                            
+                            popularView
+                        }
+                        .padding(.vertical)
+                    }
+                    .scrollIndicators(.hidden)
+                    .background(Color(uiColor: .systemGroupedBackground)) //Change this later
+                    .contentMargins(.horizontal, 16)
                 }
-                .padding(.vertical)
+                else {
+                    if secondsLoading == 2 {
+                        VStack(spacing: 8) {
+                            ProgressView()
+                            
+                            Text("Loading")
+                                .foregroundStyle(.secondary)
+                            
+                        }
+                        .background(.clear)
+                    }
+                }
+            }
+            .task {
+                while secondsLoading < 2 {
+                    try? await Task.sleep(for: .seconds(1))
+                    secondsLoading += 1
+                }
             }
             .task { await getFeatureAvatars() }
             .task { await getAvatarCategories() }
             .task { await getPopularAvatars() }
-            .scrollIndicators(.hidden)
-            .background(Color(uiColor: .systemGroupedBackground)) //Change this later
-            .contentMargins(.horizontal, 16)
+            .animation(.easeInOut, value: isShowingScreen)
             .navigationTitle("Explore")
         }
     }
@@ -100,13 +128,15 @@ extension ExploreView {
     private func getAvatarCategories() async {
         if !isLoadingAvatarCategories { return }
  
-        do {
-            try await Task.sleep(for: .seconds(2))
-            avatarCategories = CharacterOption.allCases
-        }
-        catch {
-            print("Error with fetching popular avatars. \(error)")
-        }
+//        do {
+//            try await Task.sleep(for: .seconds(1))
+//            avatarCategories = CharacterOption.allCases
+//        }
+//        catch {
+//            print("Error with fetching popular avatars. \(error)")
+//        }
+        
+        avatarCategories = CharacterOption.allCases
         isLoadingAvatarCategories = false
     }
 }
