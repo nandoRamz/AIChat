@@ -7,18 +7,36 @@
 
 import SwiftUI
 
-struct AvatarCategoriesSectionViewBuilder: View {   
+struct AvatarCategoriesSectionViewBuilder: View {
+    @Environment(AvatarManager.self) private var avatarManager
+    
+    @State private var categories: [CharacterOption] = []
+    @State private var didFinishFetchingCategories: Bool = false
     @State private var itemSize: CGSize = .zero
-        
-    var categories: [CharacterOption] = []
-    var itemsDisplaying: Int = 3
-    var isLoading: Bool = true
+    
+    var itemsDisplaying: Int
+    var previewState: PreviewState?
+    
+    init(
+        itemsDisplaying: Int = 3
+    ) {
+        self.itemsDisplaying = itemsDisplaying
+    }
+    
+    init(
+        previewState: PreviewState,
+        itemsDisplaying: Int = 3
+    ) {
+        self.previewState = previewState
+        self.itemsDisplaying = itemsDisplaying
+    }
+    
     
     var body: some View {
         VStack(spacing: 8) {
-            ListTitleView(text: "Categories") //
+            ListTitleView(text: "Categories")
             
-            if isLoading {
+            if !didFinishFetchingCategories {
                 loadingView
             }
             else {
@@ -31,7 +49,7 @@ struct AvatarCategoriesSectionViewBuilder: View {
                 else {
                     CarouselView(
                         items: categories,
-                        numberOfItemsOnScreen: 3,
+                        numberOfItemsOnScreen: itemsDisplaying,
                         itemsSpacing: 8,
                         scrollTargetBehavior: .viewAligned(limitBehavior: .never),
                         isShowingPageIndicator: false,
@@ -39,13 +57,47 @@ struct AvatarCategoriesSectionViewBuilder: View {
                             CategoryCell(
                                 title: item.rawValue.capitalized,
                                 imageName: Constants.randomImageUrlString,
-                                isLoading: isLoading,
+                                isLoading: !didFinishFetchingCategories,
                                 cornerRadius: 15
                             )
                         }
                     )
                 }
             }
+        }
+        .onAppear {
+            if didFinishFetchingCategories { return }
+
+            setViewState()
+        }
+    }
+}
+
+//MARK: - Methods
+///Methods
+extension AvatarCategoriesSectionViewBuilder {
+    private func getCategories() {
+        //TODO: Do the fetch here and handle error here
+        Task {
+            try await Task.sleep(for: .seconds(3))
+            categories = CharacterOption.allCases
+            didFinishFetchingCategories = true
+        }
+    }
+    
+    private func setViewState() {
+        switch previewState {
+        case .loading: break
+        case .noResults:
+            Task {
+                try await Task.sleep(for: .seconds(0.3))
+                didFinishFetchingCategories = true
+            }
+        case .doneLoading:
+            didFinishFetchingCategories = true
+            categories = CharacterOption.allCases
+        case .none:
+            getCategories()
         }
     }
 }
@@ -63,7 +115,7 @@ extension AvatarCategoriesSectionViewBuilder {
                         isLoading: true,
                         cornerRadius: 15
                     )
-                    .containerRelativeFrame(.horizontal, count: 3, spacing: 8)
+                    .containerRelativeFrame(.horizontal, count: itemsDisplaying, spacing: 8)
                     .getSize($itemSize)
                 }
             }
@@ -76,51 +128,17 @@ extension AvatarCategoriesSectionViewBuilder {
 
 
 //MARK: - Previews
-#Preview("loading") {
-    ZStack {
-        Color.black.opacity(0.1)
-        
-        AvatarCategoriesSectionViewBuilder(
-            categories: [],
-            itemsDisplaying: 3,
-            isLoading: true
-        )
-        .padding(.horizontal)
-    }
-}
-
-#Preview("done_loading") {
-    ZStack {
-        Color.black.opacity(0.1)
-        
-        AvatarCategoriesSectionViewBuilder(
-            categories: CharacterOption.allCases,
-            itemsDisplaying: 3,
-            isLoading: false
-        )
-        .padding(.horizontal)
-    }
-}
-
-fileprivate struct NoDataPreview: View {
-    @State private var isLoading: Bool = true
-    var body: some View {
-        ZStack {
-            Color.black.opacity(0.1)
+#Preview() {
+    ScrollView {
+        VStack(spacing: 16) {
+            AvatarCategoriesSectionViewBuilder()
+            AvatarCategoriesSectionViewBuilder(previewState: .loading)
+            AvatarCategoriesSectionViewBuilder(previewState: .noResults)
+            AvatarCategoriesSectionViewBuilder(previewState: .doneLoading)
+            AvatarCategoriesSectionViewBuilder(itemsDisplaying: 2)
             
-            AvatarCategoriesSectionViewBuilder(
-                categories: [],
-                itemsDisplaying: 3,
-                isLoading: isLoading
-            )
-            .padding(.horizontal)
-        }
-        .task {
-            try? await Task.sleep(for: .seconds(2))
-            isLoading = false
         }
     }
-}
-#Preview("done_loading_with_no_data") {
-    NoDataPreview()
+    .contentMargins(.horizontal, 16)
+    .environment(AvatarManager(service: MockAvatarService()))
 }

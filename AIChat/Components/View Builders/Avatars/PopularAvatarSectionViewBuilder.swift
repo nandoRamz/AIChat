@@ -10,19 +10,32 @@ import SwiftUI
 struct PopularAvatarSectionViewBuilder: View {
     @Environment(\.colorScheme) private var colorScheme
     private var isDarkMode: Bool { colorScheme == .dark }
+    @Environment(AvatarManager.self) private var avatarManager
     
     @State private var cardSize: CGSize = .zero
+    @State private var avatars: [AvatarModel] = []
+    @State private var didFinishFetchingAvatars: Bool = false
+    private var isPreview: Bool = false
     
     var maxAvatars: Int = 5
-    var avatars: [AvatarModel] = []
-    var isLoading: Bool = true
+    
+    ///Use only for Xcode Preview
+    init(avatars: [AvatarModel], didFinishFetchingAvatars: Bool) {
+        _avatars = State(wrappedValue: avatars)
+        _didFinishFetchingAvatars = State(wrappedValue: didFinishFetchingAvatars)
+        self.isPreview = true
+    }
+    
+    init(maxAvatars: Int = 5) {
+        self.maxAvatars = maxAvatars
+    }
     
     var body: some View {
         VStack(spacing: 8) {
             ListTitleView(text: "Popular")
             
             ZStack {
-                if isLoading {
+                if !didFinishFetchingAvatars {
                     loadingView
                         .getSize($cardSize)
                 }
@@ -38,6 +51,10 @@ struct PopularAvatarSectionViewBuilder: View {
                     }
                 }
             }
+        }
+        .onAppear {
+            if didFinishFetchingAvatars { return }
+            getAvatars()
         }
     }
 }
@@ -55,6 +72,14 @@ extension PopularAvatarSectionViewBuilder {
                 )
                 .padding(.vertical, 11)
             }
+            
+            if avatars.count < maxAvatars {
+                ForEach(0..<(maxAvatars - avatars.count), id: \.self) { _ in
+                    redactedPopularCellView
+                        .padding(.vertical)
+                        .opacity(0)
+                }
+            }
         }
         .padding(.vertical, 11)
         .padding(.horizontal)
@@ -65,13 +90,8 @@ extension PopularAvatarSectionViewBuilder {
     private var loadingView: some View {
         VStack(spacing: 0) {
             ForEach(0..<maxAvatars, id: \.self) { _ in
-                PopularCell(
-                    imageUrlString: "",
-                    title: "",
-                    subTitle: "",
-                    isLoading: true
-                )
-                .padding(.vertical, 11)
+                redactedPopularCellView
+                    .padding(.vertical, 11)
             }
         }
         .padding(.vertical, 11)
@@ -79,69 +99,44 @@ extension PopularAvatarSectionViewBuilder {
         .background(isDarkMode ? .ultraThinMaterial : .bar)
         .clipShape(.rect(cornerRadius: 15))
     }
-}
-
-
-//MARK: - Previews
-#Preview("loading") {
-    ZStack {
-        Color.black.opacity(0.2)
-        
-        PopularAvatarSectionViewBuilder(
-            maxAvatars: 5,
-            avatars: AvatarModel.samples,
+    
+    private var redactedPopularCellView: some View {
+        PopularCell(
+            imageUrlString: "",
+            title: "",
+            subTitle: "",
             isLoading: true
         )
-        .padding(.horizontal)
     }
 }
 
-#Preview("done_loading_less_data") {
-    ZStack {
-        Color.black.opacity(0.2)
-        
-        PopularAvatarSectionViewBuilder(
-            maxAvatars: 7,
-            avatars: AvatarModel.samples,
-            isLoading: false
-        )
-        .padding(.horizontal)
-    }
-}
-
-#Preview("done_loading_more_data") {
-    ZStack {
-        Color.black.opacity(0.2)
-        
-        PopularAvatarSectionViewBuilder(
-            maxAvatars: 2,
-            avatars: AvatarModel.samples,
-            isLoading: false
-        )
-        .padding(.horizontal)
-    }
-}
-
-fileprivate struct noDataPreview: View {
-    @State private var isLoading = true
-    @State private var avatars = []
-    var body: some View {
-        ZStack {
-            Color.black.opacity(0.2)
-            
-            PopularAvatarSectionViewBuilder(
-                maxAvatars: 5,
-                avatars: [],
-                isLoading: isLoading
-            )
-            .padding(.horizontal)
-        }
-        .task {
-            try? await Task.sleep(for: .seconds(2))
-            isLoading.toggle()
+//MARK: - Methods
+///Methods
+extension PopularAvatarSectionViewBuilder {
+    private func getAvatars() {
+        if isPreview { return }
+        Task {
+            do {
+                avatars = try await avatarManager.getPopularAvatars()
+            }
+            catch {
+                print("Error we couldn't fetch popular avatars: \(error)")
+            }
+            didFinishFetchingAvatars = true
         }
     }
 }
-#Preview("done_loading_no_data") {
-    noDataPreview()
+
+//MARK: - Previews
+#Preview {
+    ScrollView {
+        VStack(spacing: 16) {
+//            PopularAvatarSectionViewBuilder()
+//            PopularAvatarSectionViewBuilder(previewState: .loading)
+//            PopularAvatarSectionViewBuilder(previewState: .noResults)
+//            PopularAvatarSectionViewBuilder(previewState: .doneLoading)
+        }
+        .padding(.horizontal)
+    }
+    .environment(AvatarManager(service: MockAvatarService()))
 }

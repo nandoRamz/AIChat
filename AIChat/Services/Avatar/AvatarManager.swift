@@ -10,7 +10,7 @@ import SwiftUI
 @Observable
 class AvatarManager {
     let service: AvatarService
-    private(set) var currentUserAvatars: [AvatarModel]?
+    private(set) var currentUserAvatars: [AvatarModel] = []
     private var listenerTask: Task<Void, Error>?
 
     init(service: AvatarService) {
@@ -18,7 +18,9 @@ class AvatarManager {
     }
     
     func save(_ avatar: AvatarModel, withImage: UIImage) async throws {
+        guard let userId = avatar.createdBy else { return }
         try await service.save(avatar, withImage: withImage)
+        try await updateCurrentUserAvatars(for: userId)
     }
     
     func getFeatureAvatars() async throws -> [AvatarModel] {
@@ -29,15 +31,19 @@ class AvatarManager {
         return try await service.getPopularAvatars()
     }
     
-    func getAvatars(for userId: String) async throws -> [AvatarModel] {
-        return try await service.getAvatars(for: userId)
-    }
-    
-    func softDeleteAvatar(withId avatarId: String) async throws {
-        try await service.updateIsActiveField(for: avatarId, with: false)
+    func deleteAvatar(_ avatar: AvatarModel) async throws {
+        guard let userId = avatar.createdBy else { return }
+        try await service.updateIsActiveField(for: avatar.id, with: false)
+        currentUserAvatars.removeAll(where: {$0 == avatar})
+        try await updateCurrentUserAvatars(for: userId)
     }
     
     func updatePrivateField(for avatarId: String, with value: Bool) async throws {
         try await service.updateIsPrivateField(for: avatarId, with: value)
     }
+    
+    func updateCurrentUserAvatars(for userId: String) async throws {
+        self.currentUserAvatars = try await service.getAvatars(for: userId)
+    }
+    
 }

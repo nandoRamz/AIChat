@@ -12,6 +12,10 @@
 		ABBEA0F32D59111D003C99AF /* AvatarCategoriesSectionViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBEA0F22D59111D003C99AF /* AvatarCategoriesSectionViewBuilder.swift */; };
 		ABBEA0F62D593DAA003C99AF /* FeatureAvatarsSectionViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBEA0F52D593DAA003C99AF /* FeatureAvatarsSectionViewBuilder.swift */; };
 		ABBEA0F82D593EC8003C99AF /* NoResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBEA0F72D593EC8003C99AF /* NoResultsView.swift */; };
+		ABBEA0FA2D598E97003C99AF /* ScreenLoadingStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBEA0F92D598E97003C99AF /* ScreenLoadingStyle.swift */; };
+		ABBEA0FC2D5A49F3003C99AF /* MyAvatarsSectionViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBEA0FB2D5A49F3003C99AF /* MyAvatarsSectionViewBuilder.swift */; };
+		ABBEA0FE2D5A52F9003C99AF /* MyAvatarCellBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBEA0FD2D5A52F9003C99AF /* MyAvatarCellBuilder.swift */; };
+		ABBEA1002D5A8BB3003C99AF /* PreviewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBEA0FF2D5A8BB3003C99AF /* PreviewState.swift */; };
 		ABCD0B322D557E66001F0EF7 /* MockAvatarService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD0B312D557E66001F0EF7 /* MockAvatarService.swift */; };
 		ABCD0B342D557E78001F0EF7 /* FirestoreAvatarService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD0B332D557E78001F0EF7 /* FirestoreAvatarService.swift */; };
 		ABCD0B362D557E87001F0EF7 /* AvatarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD0B352D557E87001F0EF7 /* AvatarManager.swift */; };
@@ -95,6 +99,10 @@
 		ABBEA0F22D59111D003C99AF /* AvatarCategoriesSectionViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarCategoriesSectionViewBuilder.swift; sourceTree = "<group>"; };
 		ABBEA0F52D593DAA003C99AF /* FeatureAvatarsSectionViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureAvatarsSectionViewBuilder.swift; sourceTree = "<group>"; };
 		ABBEA0F72D593EC8003C99AF /* NoResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoResultsView.swift; sourceTree = "<group>"; };
+		ABBEA0F92D598E97003C99AF /* ScreenLoadingStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenLoadingStyle.swift; sourceTree = "<group>"; };
+		ABBEA0FB2D5A49F3003C99AF /* MyAvatarsSectionViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAvatarsSectionViewBuilder.swift; sourceTree = "<group>"; };
+		ABBEA0FD2D5A52F9003C99AF /* MyAvatarCellBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAvatarCellBuilder.swift; sourceTree = "<group>"; };
+		ABBEA0FF2D5A8BB3003C99AF /* PreviewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewState.swift; sourceTree = "<group>"; };
 		ABCD0B312D557E66001F0EF7 /* MockAvatarService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAvatarService.swift; sourceTree = "<group>"; };
 		ABCD0B332D557E78001F0EF7 /* FirestoreAvatarService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreAvatarService.swift; sourceTree = "<group>"; };
 		ABCD0B352D557E87001F0EF7 /* AvatarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarManager.swift; sourceTree = "<group>"; };
@@ -199,6 +207,7 @@
 				ABBEA0F52D593DAA003C99AF /* FeatureAvatarsSectionViewBuilder.swift */,
 				ABBEA0F22D59111D003C99AF /* AvatarCategoriesSectionViewBuilder.swift */,
 				ABBEA0F02D590270003C99AF /* PopularAvatarSectionViewBuilder.swift */,
+				ABBEA0FB2D5A49F3003C99AF /* MyAvatarsSectionViewBuilder.swift */,
 			);
 			path = Avatars;
 			sourceTree = "<group>";
@@ -358,6 +367,7 @@
 				ABDD31452D4AA4A900A5AB28 /* ImageTextGradientStyle.swift */,
 				ABDD314E2D4ACD3C00A5AB28 /* ButtonScaleEffectStyle.swift */,
 				ABDD31622D4C2D1C00A5AB28 /* ListStyle.swift */,
+				ABBEA0F92D598E97003C99AF /* ScreenLoadingStyle.swift */,
 			);
 			path = Styles;
 			sourceTree = "<group>";
@@ -390,6 +400,7 @@
 				ABDD31702D4D659700A5AB28 /* ViewSizeModifier.swift */,
 				ABDD31752D4D941800A5AB28 /* ErrorAlertModifier.swift */,
 				ABDD317C2D4E68A700A5AB28 /* ShowModalModifier.swift */,
+				ABBEA0FF2D5A8BB3003C99AF /* PreviewState.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -418,6 +429,7 @@
 				ABDD312F2D4A79A000A5AB28 /* FeatureCell.swift */,
 				ABDD31432D4AA16500A5AB28 /* CategoryCell.swift */,
 				ABDD31482D4AC09400A5AB28 /* PopularCell.swift */,
+				ABBEA0FD2D5A52F9003C99AF /* MyAvatarCellBuilder.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -778,6 +790,7 @@
 				ABF6B2912D53B5A600B9D27A /* MockAuthService.swift in Sources */,
 				ABDD31272D4954F500A5AB28 /* Constants.swift in Sources */,
 				ABDD31782D4D9D9E00A5AB28 /* Binding+Extension.swift in Sources */,
+				ABBEA0FA2D598E97003C99AF /* ScreenLoadingStyle.swift in Sources */,
 				ABDD31712D4D659700A5AB28 /* ViewSizeModifier.swift in Sources */,
 				ABDD315E2D4BF1E500A5AB28 /* UserModel.swift in Sources */,
 				ABDD31662D4D1B2D00A5AB28 /* CreateAvatarView.swift in Sources */,
@@ -793,6 +806,7 @@
 				ABDD31302D4A79A000A5AB28 /* FeatureCell.swift in Sources */,
 				ABDD31632D4C2D1C00A5AB28 /* ListStyle.swift in Sources */,
 				ABDD313D2D4A828900A5AB28 /* AvatarModel.swift in Sources */,
+				ABBEA0FE2D5A52F9003C99AF /* MyAvatarCellBuilder.swift in Sources */,
 				ABDD31122D4940DB00A5AB28 /* AppState.swift in Sources */,
 				ABDD313B2D4A824F00A5AB28 /* CharacterLocation.swift in Sources */,
 				ABDD31572D4BD6D700A5AB28 /* ChatCell.swift in Sources */,
@@ -808,6 +822,7 @@
 				ABDD317D2D4E68A700A5AB28 /* ShowModalModifier.swift in Sources */,
 				ABF6B2B62D54FE4400B9D27A /* GetImgAIService.swift in Sources */,
 				ABDD317B2D4E676500A5AB28 /* AvatarProfileModal.swift in Sources */,
+				ABBEA1002D5A8BB3003C99AF /* PreviewState.swift in Sources */,
 				ABDD30E82D491BD700A5AB28 /* AIChatApp.swift in Sources */,
 				ABF6B2A02D53F95100B9D27A /* UserManager.swift in Sources */,
 				ABCD0B342D557E78001F0EF7 /* FirestoreAvatarService.swift in Sources */,
@@ -830,6 +845,7 @@
 				ABF6B2982D53C80500B9D27A /* AuthManager.swift in Sources */,
 				ABF6B2B42D54FE1E00B9D27A /* MockAIImageGeneratorService.swift in Sources */,
 				ABF6B2C52D554C3100B9D27A /* FirebaseStorageService.swift in Sources */,
+				ABBEA0FC2D5A49F3003C99AF /* MyAvatarsSectionViewBuilder.swift in Sources */,
 				ABBEA0F32D59111D003C99AF /* AvatarCategoriesSectionViewBuilder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
