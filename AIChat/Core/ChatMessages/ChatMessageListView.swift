@@ -8,13 +8,19 @@
 import SwiftUI
 
 struct ChatMessageListView: View {
+    @Environment(AvatarManager.self) private var avatarManager
+    @Environment(AuthManager.self) private var authManager
+    @Environment(UserManager.self) private var userManager
+    
     @State private var messageText: String = ""
     @State private var messages: [ChatMessageModel] = ChatMessageModel.samples
-    @State private var avatar: AvatarModel = .sample
+//    @State private var avatar: AvatarModel = .sample
     @State private var currentUser: UserModel? = .sample
     @State private var lastMessageId: String?  
     @State private var error: AnyAlertError?
     @State private var isShowingAvatarModal: Bool = false
+    
+    var avatar: AvatarModel
  
     var body: some View {
         VStack(spacing: 0) {
@@ -44,6 +50,10 @@ struct ChatMessageListView: View {
                     Image(systemName: "ellipsis")
                 }
             }
+        }
+        .task {
+            addUserViewToAvatar()
+            addAvatarToUserRecents()
         }
     }
 }
@@ -132,6 +142,31 @@ extension ChatMessageListView {
 //MARK: - Methods
 ///Methods
 extension ChatMessageListView {
+    private func addUserViewToAvatar() {
+        Task {
+            do {
+                try await avatarManager.addUserView(try authManager.getId(), to: avatar.id)
+            }
+            catch {
+                print("Error with adding user view to avatar: \(error)")
+            }
+        }
+    }
+    
+    private func addAvatarToUserRecents() {
+        Task {
+            do {
+                try await userManager.addAvatarToMostRecent(
+                    avatar.id,
+                    to: try authManager.getId()
+                )
+            }
+            catch {
+                print("Error with adding avatar to users most recent: \(error)")
+            }
+        }
+    }
+    
     private func isCurrentUserMessage(_ message: ChatMessageModel) -> Bool {
         message.createdBy == currentUser?.id
     }
@@ -179,7 +214,10 @@ extension ChatMessageListView {
 
 #Preview {
     NavigationStack {
-        ChatMessageListView()
+        ChatMessageListView(avatar: .sample)
+            .environment(AvatarManager(service: MockAvatarService()))
+            .environment(AuthManager(service: MockAuthService(user: .sample())))
+            .environment(UserManager(service: MockUserService()))
     }
 }
 

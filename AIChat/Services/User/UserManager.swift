@@ -47,4 +47,12 @@ class UserManager {
         try await service.deleteUser(with: id)
         signOut()
     }
+    
+    func addAvatarToMostRecent(_ avatarId: String, to userId: String) async throws {
+        try await service.addAvatarToMostRecents(avatarId, to: userId)
+    }
+    
+    func getMostRecentAvatars(for userId: String) async throws -> [MostRecentAvatarModel] {
+        try await service.getMostRecentAvatars(for: userId)
+    }
 }

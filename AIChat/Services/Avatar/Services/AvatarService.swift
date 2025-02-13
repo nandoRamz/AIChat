@@ -15,4 +15,7 @@ protocol AvatarService {
     func getAvatars(for userId: String) async throws -> [AvatarModel]
     func updateIsPrivateField(for avatarId: String, with value: Bool) async throws
     func updateIsActiveField(for avatarId: String, with value: Bool) async throws
+    func addUserView( _ userId: String, to avatarId: String) async throws
+    func updateViewCountField(for avatarId: String, checking userId: String) async throws
+    func getAvatars(with ids: [String]) async throws -> [AvatarModel]
 }

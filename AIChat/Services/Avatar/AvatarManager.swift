@@ -46,4 +46,22 @@ class AvatarManager {
         self.currentUserAvatars = try await service.getAvatars(for: userId)
     }
     
+    func addUserView(_ userId: String, to avatarId: String) async throws {
+        try await service.updateViewCountField(for: avatarId, checking: userId)
+        try await service.addUserView(userId, to: avatarId)
+    }
+    
+    func getAvatars(with ids: [String]) async throws -> [AvatarModel] {
+        try await service.getAvatars(with: ids)
+    }
+    
+    func orderMostRecentAvatars(_ mostRecentAvatars: [MostRecentAvatarModel], using avatars: [AvatarModel]) -> [AvatarModel] {
+        var orderAvatars: [AvatarModel] = []
+        for avatar in mostRecentAvatars {
+            if let matchingAvatar = avatars.first(where: {$0.id == avatar.avatarId}) {
+                orderAvatars.append(matchingAvatar)
+            }
+        }
+        return orderAvatars.reversed()
+    }
 }

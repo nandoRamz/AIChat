@@ -14,23 +14,27 @@ struct AvatarCategoriesSectionViewBuilder: View {
     @State private var didFinishFetchingCategories: Bool = false
     @State private var itemSize: CGSize = .zero
     
+    private var isPreview: Bool = false
+    ///Only use for Xcode previews
+    init(
+        categories: [CharacterOption],
+        didFinishFetchingCategories: Bool,
+        itemsDisplaying: Int,
+        itemSize: CGSize = CGSize(width: 0, height: 200)
+    ) {
+        _categories = State(wrappedValue: categories)
+        _didFinishFetchingCategories = State(wrappedValue: didFinishFetchingCategories)
+        _itemSize = State(wrappedValue: itemSize)
+        self.itemsDisplaying = itemsDisplaying
+        self.isPreview = true
+    }
+    
     var itemsDisplaying: Int
-    var previewState: PreviewState?
-    
     init(
         itemsDisplaying: Int = 3
     ) {
         self.itemsDisplaying = itemsDisplaying
     }
-    
-    init(
-        previewState: PreviewState,
-        itemsDisplaying: Int = 3
-    ) {
-        self.previewState = previewState
-        self.itemsDisplaying = itemsDisplaying
-    }
-    
     
     var body: some View {
         VStack(spacing: 8) {
@@ -68,7 +72,7 @@ struct AvatarCategoriesSectionViewBuilder: View {
         .onAppear {
             if didFinishFetchingCategories { return }
 
-            setViewState()
+            getCategories()
         }
     }
 }
@@ -77,27 +81,12 @@ struct AvatarCategoriesSectionViewBuilder: View {
 ///Methods
 extension AvatarCategoriesSectionViewBuilder {
     private func getCategories() {
+        if isPreview { return }
         //TODO: Do the fetch here and handle error here
         Task {
             try await Task.sleep(for: .seconds(3))
             categories = CharacterOption.allCases
             didFinishFetchingCategories = true
-        }
-    }
-    
-    private func setViewState() {
-        switch previewState {
-        case .loading: break
-        case .noResults:
-            Task {
-                try await Task.sleep(for: .seconds(0.3))
-                didFinishFetchingCategories = true
-            }
-        case .doneLoading:
-            didFinishFetchingCategories = true
-            categories = CharacterOption.allCases
-        case .none:
-            getCategories()
         }
     }
 }
@@ -128,15 +117,36 @@ extension AvatarCategoriesSectionViewBuilder {
 
 
 //MARK: - Previews
-#Preview() {
+#Preview("previews") {
+    ScrollView {
+        VStack(spacing: 16) {
+            AvatarCategoriesSectionViewBuilder(
+                categories: [],
+                didFinishFetchingCategories: false,
+                itemsDisplaying: 3
+            )
+            
+            AvatarCategoriesSectionViewBuilder(
+                categories: [],
+                didFinishFetchingCategories: true,
+                itemsDisplaying: 3
+            )
+            
+            AvatarCategoriesSectionViewBuilder(
+                categories: CharacterOption.allCases,
+                didFinishFetchingCategories: true,
+                itemsDisplaying: 3
+            )
+        }
+    }
+    .contentMargins(.horizontal, 16)
+    .environment(AvatarManager(service: MockAvatarService()))
+}
+
+#Preview("on_run_time") {
     ScrollView {
         VStack(spacing: 16) {
             AvatarCategoriesSectionViewBuilder()
-            AvatarCategoriesSectionViewBuilder(previewState: .loading)
-            AvatarCategoriesSectionViewBuilder(previewState: .noResults)
-            AvatarCategoriesSectionViewBuilder(previewState: .doneLoading)
-            AvatarCategoriesSectionViewBuilder(itemsDisplaying: 2)
-            
         }
     }
     .contentMargins(.horizontal, 16)

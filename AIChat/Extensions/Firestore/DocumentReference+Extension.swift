@@ -33,4 +33,8 @@ extension DocumentReference {
             }
         }
     }
+    
+    func docType<T: Decodable>(_ type: T.Type) async throws -> T {
+        try await self.getDocument(as: T.self)
+    }
 }

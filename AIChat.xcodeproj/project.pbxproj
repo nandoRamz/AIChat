@@ -68,6 +68,10 @@
 		ABDD317B2D4E676500A5AB28 /* AvatarProfileModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD317A2D4E676500A5AB28 /* AvatarProfileModal.swift */; };
 		ABDD317D2D4E68A700A5AB28 /* ShowModalModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD317C2D4E68A700A5AB28 /* ShowModalModifier.swift */; };
 		ABDD31812D4E84EB00A5AB28 /* CategoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDD31802D4E84EB00A5AB28 /* CategoryListView.swift */; };
+		ABF5A0D92D5D14AF004D1158 /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF5A0D82D5D14AF004D1158 /* NavigationManager.swift */; };
+		ABF5A0DD2D5D4320004D1158 /* UserMostRecentAvatarsSectionViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF5A0DC2D5D4320004D1158 /* UserMostRecentAvatarsSectionViewBuilder.swift */; };
+		ABF5A0DF2D5D439C004D1158 /* MostRecentAvatarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF5A0DE2D5D439C004D1158 /* MostRecentAvatarCell.swift */; };
+		ABF5A0E12D5D5440004D1158 /* MostRecentAvatarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF5A0E02D5D5440004D1158 /* MostRecentAvatarModel.swift */; };
 		ABF6B2882D509AE100B9D27A /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = ABF6B2872D509AE100B9D27A /* FirebaseAuth */; };
 		ABF6B28B2D509D6500B9D27A /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF6B28A2D509D6500B9D27A /* FirebaseAuthService.swift */; };
 		ABF6B2912D53B5A600B9D27A /* MockAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF6B2902D53B5A600B9D27A /* MockAuthService.swift */; };
@@ -156,6 +160,10 @@
 		ABDD317A2D4E676500A5AB28 /* AvatarProfileModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarProfileModal.swift; sourceTree = "<group>"; };
 		ABDD317C2D4E68A700A5AB28 /* ShowModalModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowModalModifier.swift; sourceTree = "<group>"; };
 		ABDD31802D4E84EB00A5AB28 /* CategoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListView.swift; sourceTree = "<group>"; };
+		ABF5A0D82D5D14AF004D1158 /* NavigationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationManager.swift; sourceTree = "<group>"; };
+		ABF5A0DC2D5D4320004D1158 /* UserMostRecentAvatarsSectionViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMostRecentAvatarsSectionViewBuilder.swift; sourceTree = "<group>"; };
+		ABF5A0DE2D5D439C004D1158 /* MostRecentAvatarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MostRecentAvatarCell.swift; sourceTree = "<group>"; };
+		ABF5A0E02D5D5440004D1158 /* MostRecentAvatarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MostRecentAvatarModel.swift; sourceTree = "<group>"; };
 		ABF6B28A2D509D6500B9D27A /* FirebaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
 		ABF6B2902D53B5A600B9D27A /* MockAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthService.swift; sourceTree = "<group>"; };
 		ABF6B2932D53BE6900B9D27A /* UserAuthInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthInfo.swift; sourceTree = "<group>"; };
@@ -208,6 +216,7 @@
 				ABBEA0F22D59111D003C99AF /* AvatarCategoriesSectionViewBuilder.swift */,
 				ABBEA0F02D590270003C99AF /* PopularAvatarSectionViewBuilder.swift */,
 				ABBEA0FB2D5A49F3003C99AF /* MyAvatarsSectionViewBuilder.swift */,
+				ABF5A0DC2D5D4320004D1158 /* UserMostRecentAvatarsSectionViewBuilder.swift */,
 			);
 			path = Avatars;
 			sourceTree = "<group>";
@@ -401,6 +410,7 @@
 				ABDD31752D4D941800A5AB28 /* ErrorAlertModifier.swift */,
 				ABDD317C2D4E68A700A5AB28 /* ShowModalModifier.swift */,
 				ABBEA0FF2D5A8BB3003C99AF /* PreviewState.swift */,
+				ABF5A0D82D5D14AF004D1158 /* NavigationManager.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -430,6 +440,7 @@
 				ABDD31432D4AA16500A5AB28 /* CategoryCell.swift */,
 				ABDD31482D4AC09400A5AB28 /* PopularCell.swift */,
 				ABBEA0FD2D5A52F9003C99AF /* MyAvatarCellBuilder.swift */,
+				ABF5A0DE2D5D439C004D1158 /* MostRecentAvatarCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -463,6 +474,7 @@
 			children = (
 				ABDD313C2D4A828900A5AB28 /* AvatarModel.swift */,
 				ABDD31542D4BD09500A5AB28 /* ChatMessageModel.swift */,
+				ABF5A0E02D5D5440004D1158 /* MostRecentAvatarModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -781,6 +793,7 @@
 				ABDD31462D4AA4A900A5AB28 /* ImageTextGradientStyle.swift in Sources */,
 				ABDD31442D4AA16500A5AB28 /* CategoryCell.swift in Sources */,
 				ABDD31492D4AC09400A5AB28 /* PopularCell.swift in Sources */,
+				ABF5A0D92D5D14AF004D1158 /* NavigationManager.swift in Sources */,
 				ABDD310A2D49366D00A5AB28 /* TabBarView.swift in Sources */,
 				ABF6B2B82D5514F100B9D27A /* AIImageGeneratorManager.swift in Sources */,
 				ABF6B2942D53BE6900B9D27A /* UserAuthInfo.swift in Sources */,
@@ -796,6 +809,7 @@
 				ABDD31662D4D1B2D00A5AB28 /* CreateAvatarView.swift in Sources */,
 				ABDD31422D4A9E4900A5AB28 /* ListTitleView.swift in Sources */,
 				ABDD31392D4A821700A5AB28 /* CharacterAction.swift in Sources */,
+				ABF5A0E12D5D5440004D1158 /* MostRecentAvatarModel.swift in Sources */,
 				ABF6B2A82D544A7B00B9D27A /* DocumentReference+Extension.swift in Sources */,
 				ABDD30FD2D492A3B00A5AB28 /* AppView.swift in Sources */,
 				ABDD31102D493BC800A5AB28 /* WelcomeView.swift in Sources */,
@@ -823,7 +837,9 @@
 				ABF6B2B62D54FE4400B9D27A /* GetImgAIService.swift in Sources */,
 				ABDD317B2D4E676500A5AB28 /* AvatarProfileModal.swift in Sources */,
 				ABBEA1002D5A8BB3003C99AF /* PreviewState.swift in Sources */,
+				ABF5A0DD2D5D4320004D1158 /* UserMostRecentAvatarsSectionViewBuilder.swift in Sources */,
 				ABDD30E82D491BD700A5AB28 /* AIChatApp.swift in Sources */,
+				ABF5A0DF2D5D439C004D1158 /* MostRecentAvatarCell.swift in Sources */,
 				ABF6B2A02D53F95100B9D27A /* UserManager.swift in Sources */,
 				ABCD0B342D557E78001F0EF7 /* FirestoreAvatarService.swift in Sources */,
 				ABDD312A2D497F9500A5AB28 /* OnboardingIntroView.swift in Sources */,

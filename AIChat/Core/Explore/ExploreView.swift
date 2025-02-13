@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ExploreView: View {
     @Environment(AvatarManager.self) private var avatarManager
+    
+    @State private var navManager = NavigationManager()
 
     @State private var isLoadingAvatarCategories: Bool = true
     @State private var avatarCategories: [CharacterOption] = []
@@ -16,14 +18,19 @@ struct ExploreView: View {
     @State private var isLoadingPopularAvatars: Bool = true
     
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $navManager.path) {
             ScrollView {
                 VStack(spacing: 32) {
                     FeatureAvatarsSectionViewBuilder()
                     
                     AvatarCategoriesSectionViewBuilder()
                     
-                    PopularAvatarSectionViewBuilder()
+                    PopularAvatarSectionViewBuilder(
+                        maxAvatars: 5,
+                        onAvatarPress: { avatar in
+                            navManager.path.append(avatar)
+                        }
+                    )
                 }
                 .padding(.vertical)
             }
@@ -31,6 +38,9 @@ struct ExploreView: View {
             .background(Color(uiColor: .systemGroupedBackground)) //Change this later
             .contentMargins(.horizontal, 16)
             .navigationTitle("Explore")
+            .navigationDestination(for: AvatarModel.self) { value in
+                ChatMessageListView(avatar: value)
+            }
         }
     }
 }
@@ -38,5 +48,7 @@ struct ExploreView: View {
 
 #Preview {
     ExploreView()
+        .environment(UserManager(service: MockUserService()))
+        .environment(AuthManager(service: MockAuthService(user: .sample())))
         .environment(AvatarManager(service: MockAvatarService()))
 }

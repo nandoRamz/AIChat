@@ -208,7 +208,8 @@ extension CreateAvatarView {
                     imageUrl: nil,
                     createdBy: try authManager.getId(),
                     timestamp: .now,
-                    isPrivate: isPrivate
+                    isPrivate: isPrivate,
+                    viewCount: 0
                 )
                 
                 guard let generatedImage else { return }

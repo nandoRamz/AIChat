@@ -21,4 +21,13 @@ struct MockUserService: UserService {
             continuation.yield(UserModel.sample)
         }
     }
+    
+    func addAvatarToMostRecents(_ avatarId: String, to userId: String) async throws {
+        
+    }
+    
+    func getMostRecentAvatars(for userId: String) async throws -> [MostRecentAvatarModel] {
+        try await Task.sleep(for: .seconds(3))
+        return AvatarModel.samples.map { MostRecentAvatarModel(avatarId: $0.id, timestamp: $0.timestamp ?? .now)}
+    }
 }

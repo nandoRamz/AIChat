@@ -40,4 +40,16 @@ struct MockAvatarService: AvatarService {
         return AvatarModel.samples
     }
     
+    func addUserView( _ userId: String, to avatarId: String) async throws {
+
+    }
+    
+    func updateViewCountField(for avatarId: String, checking userId: String) async throws {
+        
+    }
+    
+    func getAvatars(with ids: [String]) async throws -> [AvatarModel] {
+        try await Task.sleep(for: .seconds(4))
+        return AvatarModel.samples
+    }
 }

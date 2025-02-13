@@ -12,6 +12,9 @@ struct FirestoreAvatarService: AvatarService {
     private let encoder = Firestore.Encoder()
     private let decoder = Firestore.Decoder()
     private let avatarsCollection = Firestore.firestore().collection(FirestoreCollections.avatars)
+    private func avatarUsersSubCollection(for avatarId: String) -> CollectionReference {
+        avatarsCollection.document(avatarId).collection("users")
+    }
     
     func save(_ avatar: AvatarModel, withImage image: UIImage) async throws {
         var mutableCopy = avatar
@@ -91,52 +94,44 @@ struct FirestoreAvatarService: AvatarService {
             AvatarModelKeys.isActive.rawValue: false
         ], merge: true)
     }
-}
-
-
-//MARK: - Private
-///Private
-extension FirestoreAvatarService {
-//    func removeCreatorsId(from avatarId: String) async throws {
-//        guard let matchingDoc = avatarsCollection
-//            .whereField(AvatarModelKeys.id.rawValue, isEqualTo: avatarId)
-//            .limit(to: 1)
-//            .getDocuments().documents.first
-//        else {
-//            return
-//        }
-//        
-//        let path = matchingDoc.reference.path
-//        let isPrivate = path.contains(FirestoreCollections.users)
-//        
-//        if isPrivate {
-//            try await matchingDoc.reference.delete()
-//        }
-//        else {
-//            try await matchingDoc.reference.updateData([
-//                AvatarModelKeys.createdBy.rawValue: NSNull()
-//            ])
-//        }
-//    }
     
-//    private func updateAggregatedCount(for userId: String, by num: Double) async throws {
-//        let key = "value"
-//        do {
-//            try await avatarAggregatedCountDoc(for: userId)
-//                .updateData([
-//                    key: FieldValue.increment(num)
-//                ])
-//        }
-//        catch {
-//            try await avatarAggregatedCountDoc(for: userId)
-//                .setData([
-//                    key: FieldValue.increment(num)
-//                ])
-//        }
-//    }
-//
-//    private func avatarAggregatedCountDoc(for userId: String) -> DocumentReference {
-//        usersCollections.document(userId)
-//            .collection(FirestoreCollections.avatars).document("aggregated_count")
-//    }
+    func addUserView( _ userId: String, to avatarId: String) async throws {
+        try await avatarUsersSubCollection(for: avatarId).document(userId).setData([
+            "userId": userId,
+            "timestamp": Timestamp()
+        ], merge: true)
+    }
+    
+    func updateViewCountField(for avatarId: String, checking userId: String) async throws {
+        let doesViewExists = try await avatarUsersSubCollection(for: avatarId).document(userId).getDocument().exists
+        if doesViewExists { return }
+        try await avatarsCollection.document(avatarId).updateData([
+            AvatarModelKeys.viewCount.rawValue: FieldValue.increment(Int64(1))
+        ])
+    }
+    
+    func getAvatars(with ids: [String]) async throws -> [AvatarModel] {
+        var avatars: [AvatarModel] = []
+        
+        try await withThrowingTaskGroup(of: AvatarModel.self) { group in
+
+            for id in ids {
+                group.addTask {
+                    try await getAvatar(with: id)
+                }
+            }
+            
+            for try await avatar in group {
+                avatars.append(avatar)
+            }
+        }
+        
+        return avatars
+    }
+    
+    func getAvatar(with id: String) async throws -> AvatarModel {
+        try await avatarsCollection.document(id)
+            .docType(AvatarModel.self)
+    }
 }
+

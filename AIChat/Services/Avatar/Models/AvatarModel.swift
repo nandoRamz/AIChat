@@ -20,6 +20,7 @@ struct AvatarModel: Codable, Hashable, Identifiable {
     private(set) var timestamp: Date?
     let isActive: Bool
     let isPrivate: Bool
+    var viewCount: Int?
     
     init(
         id: String,
@@ -31,7 +32,8 @@ struct AvatarModel: Codable, Hashable, Identifiable {
         createdBy: String?,
         timestamp: Date = .now,
         isActive: Bool = true,
-        isPrivate: Bool
+        isPrivate: Bool,
+        viewCount: Int? = 0
     ) {
         self.id = id
         self.name = name
@@ -43,6 +45,7 @@ struct AvatarModel: Codable, Hashable, Identifiable {
         self.timestamp = timestamp
         self.isActive = isActive
         self.isPrivate = isPrivate
+        self.viewCount = viewCount
     }
     
     enum CodingKeys: String, CodingKey {
@@ -56,6 +59,7 @@ struct AvatarModel: Codable, Hashable, Identifiable {
         case timestamp = "timestamp"
         case isActive = "is_active"
         case isPrivate = "is_private"
+        case viewCount = "view_count"
     }
 }
 
@@ -98,7 +102,8 @@ extension AvatarModel {
                 imageUrl: Constants.randomImageUrlString,
                 createdBy: UUID().uuidString,
                 timestamp: .now,
-                isPrivate: true
+                isPrivate: true,
+                viewCount: 2
             ),
             AvatarModel(
                 id: UUID().uuidString,
@@ -109,7 +114,8 @@ extension AvatarModel {
                 imageUrl: Constants.randomImageUrlString,
                 createdBy: UUID().uuidString,
                 timestamp: .now,
-                isPrivate: false
+                isPrivate: false,
+                viewCount: 5
             ),
             AvatarModel(
                 id: UUID().uuidString,
@@ -120,7 +126,8 @@ extension AvatarModel {
                 imageUrl: Constants.randomImageUrlString,
                 createdBy: UUID().uuidString,
                 timestamp: .now,
-                isPrivate: false
+                isPrivate: false,
+                viewCount: 15
             ),
             AvatarModel(
                 id: UUID().uuidString,
@@ -131,7 +138,8 @@ extension AvatarModel {
                 imageUrl: Constants.randomImageUrlString,
                 createdBy: UUID().uuidString,
                 timestamp: .now,
-                isPrivate: false
+                isPrivate: false,
+                viewCount: 0
             )
         ]
     }

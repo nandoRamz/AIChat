@@ -12,16 +12,18 @@ struct FeatureAvatarsSectionViewBuilder: View {
     
     @State private var avatars: [AvatarModel] = []
     @State private var didFinishFetchingAvatars: Bool = false
-        
-    var height: CGFloat
-    var previewState: PreviewState?
     
-    init(height: CGFloat = 200) {
+    private var isPreview: Bool = false
+    ///Only user for Xcode preivews
+    init(avatars: [AvatarModel], didFinishFetchingAvatars: Bool, height: CGFloat) {
+        _avatars = State(wrappedValue: avatars)
+        _didFinishFetchingAvatars = State(wrappedValue: didFinishFetchingAvatars)
         self.height = height
+        self.isPreview = true
     }
     
-    init(previewState: PreviewState, height: CGFloat = 200) {
-        self.previewState = previewState
+    var height: CGFloat
+    init(height: CGFloat = 200) {
         self.height = height
     }
    
@@ -61,7 +63,7 @@ struct FeatureAvatarsSectionViewBuilder: View {
         }
         .onAppear {
             if didFinishFetchingAvatars { return }
-            setViewState()
+            getAvatars()
         }
     }
 }
@@ -93,6 +95,7 @@ extension FeatureAvatarsSectionViewBuilder {
 ///Methods
 extension FeatureAvatarsSectionViewBuilder {
     private func getAvatars() {
+        if isPreview { return }
         Task {
             do {
                 avatars = try await avatarManager.getFeatureAvatars()
@@ -103,29 +106,38 @@ extension FeatureAvatarsSectionViewBuilder {
             didFinishFetchingAvatars = true
         }
     }
-    
-    private func setViewState() {
-        switch previewState {
-        case .loading:
-            didFinishFetchingAvatars = false
-        case .doneLoading:
-            didFinishFetchingAvatars = true
-            avatars = AvatarModel.samples
-        case .noResults:
-            didFinishFetchingAvatars = true
-        case .none:
-            getAvatars()
-        }
-    }
 }
 
-#Preview() {
+#Preview("previews") {
+    ScrollView {
+        VStack(spacing: 16) {
+            FeatureAvatarsSectionViewBuilder(
+                avatars: [],
+                didFinishFetchingAvatars: false,
+                height: 200
+            )
+            
+            FeatureAvatarsSectionViewBuilder(
+                avatars: [],
+                didFinishFetchingAvatars: true,
+                height: 200
+            )
+            
+            FeatureAvatarsSectionViewBuilder(
+                avatars: AvatarModel.samples,
+                didFinishFetchingAvatars: true,
+                height: 200
+            )
+        }
+        .padding(.horizontal)
+    }
+    .environment(AvatarManager(service: MockAvatarService()))
+}
+
+#Preview("on_run_time") {
     ScrollView {
         VStack(spacing: 16) {
             FeatureAvatarsSectionViewBuilder()
-            FeatureAvatarsSectionViewBuilder(previewState: .loading)
-            FeatureAvatarsSectionViewBuilder(previewState: .noResults)
-            FeatureAvatarsSectionViewBuilder(previewState: .doneLoading)
         }
         .padding(.horizontal)
     }

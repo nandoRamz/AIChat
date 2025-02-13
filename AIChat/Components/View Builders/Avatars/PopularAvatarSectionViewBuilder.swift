@@ -15,10 +15,8 @@ struct PopularAvatarSectionViewBuilder: View {
     @State private var cardSize: CGSize = .zero
     @State private var avatars: [AvatarModel] = []
     @State private var didFinishFetchingAvatars: Bool = false
+    
     private var isPreview: Bool = false
-    
-    var maxAvatars: Int = 5
-    
     ///Use only for Xcode Preview
     init(avatars: [AvatarModel], didFinishFetchingAvatars: Bool) {
         _avatars = State(wrappedValue: avatars)
@@ -26,8 +24,11 @@ struct PopularAvatarSectionViewBuilder: View {
         self.isPreview = true
     }
     
-    init(maxAvatars: Int = 5) {
+    var maxAvatars: Int = 5
+    var onAvatarPress: ((AvatarModel) -> Void)?
+    init(maxAvatars: Int = 5, onAvatarPress: ((AvatarModel) -> Void)? = nil) {
         self.maxAvatars = maxAvatars
+        self.onAvatarPress = onAvatarPress
     }
     
     var body: some View {
@@ -43,7 +44,7 @@ struct PopularAvatarSectionViewBuilder: View {
                     if avatars.isEmpty {
                         NoResultsView(
                             message: "We couldn't find any popular avatars. Please try again later.",
-                            height: cardSize.height
+                            height: isPreview ? 200 : cardSize.height
                         )
                     }
                     else {
@@ -71,6 +72,8 @@ extension PopularAvatarSectionViewBuilder {
                     subTitle: avatar.characterDescription()
                 )
                 .padding(.vertical, 11)
+                .background(.primary.opacity(0.0001))
+                .onTapGesture { onAvatarPress?(avatar) }
             }
             
             if avatars.count < maxAvatars {
@@ -128,13 +131,28 @@ extension PopularAvatarSectionViewBuilder {
 }
 
 //MARK: - Previews
-#Preview {
+#Preview("previews") {
+    ScrollView {
+        VStack(spacing: 16) {
+            PopularAvatarSectionViewBuilder(
+                avatars: AvatarModel.samples,
+                didFinishFetchingAvatars: true
+            )
+            
+            PopularAvatarSectionViewBuilder(
+                avatars: [],
+                didFinishFetchingAvatars: true
+            )
+        }
+        .padding(.horizontal)
+    }
+    .environment(AvatarManager(service: MockAvatarService()))
+}
+
+#Preview("on_run_time") {
     ScrollView {
         VStack(spacing: 16) {
 //            PopularAvatarSectionViewBuilder()
-//            PopularAvatarSectionViewBuilder(previewState: .loading)
-//            PopularAvatarSectionViewBuilder(previewState: .noResults)
-//            PopularAvatarSectionViewBuilder(previewState: .doneLoading)
         }
         .padding(.horizontal)
     }

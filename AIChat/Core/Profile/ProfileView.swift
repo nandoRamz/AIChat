@@ -10,12 +10,12 @@ import SwiftUI
 struct ProfileView: View {
     @Environment(UserManager.self) private var userManager
     
+    @State private var navManager: NavigationManager = NavigationManager()
     @State private var isShowingSettings: Bool = false
     @State private var isShowingCreateAvatarView: Bool = false
-    @State private var isShowingAvatarConfirmationDialog: Bool = false
     
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $navManager.path) {
             ScrollView {
                 VStack(spacing: 32) {
                     let currentUser = userManager.currentUser
@@ -25,7 +25,10 @@ struct ProfileView: View {
                         .frame(width: 100, height: 100)
                     
                     MyAvatarsSectionViewBuilder(
-                        onCreateAvatarPress: { onCreateAvatarPress() }
+                        onCreateAvatarPress: { onCreateAvatarPress() },
+                        onAvatarPress: { avatar in
+                            navManager.path.append(avatar)
+                        }
                     )
                 }
             }
@@ -43,6 +46,9 @@ struct ProfileView: View {
             .navigationDestination(isPresented: $isShowingCreateAvatarView) {
                 CreateAvatarView()
                     .navigationBarBackButtonHidden()
+            }
+            .navigationDestination(for: AvatarModel.self) { value in
+                ChatMessageListView(avatar: value)
             }
         }
     }

@@ -12,16 +12,19 @@ struct MyAvatarCellBuilder: View {
     
     var isLoading: Bool
     var avatar: AvatarModel
+    var onAvatarPress: ((AvatarModel) -> Void)?
     var onMenuItemPress: ((AvatarMenuItem) -> Void)?
     
     init(
         isLoading: Bool = true,
         avatar: AvatarModel = AvatarModel.sample,
+        onAvatarPress: ((AvatarModel) -> Void)? = nil,
         onMenuItemPress: ((AvatarMenuItem) -> Void)? = nil
     ) {
         _isPrivate = State(wrappedValue: avatar.isPrivate)
         self.isLoading = isLoading
         self.avatar = avatar
+        self.onAvatarPress = onAvatarPress
         self.onMenuItemPress = onMenuItemPress
     }
     
@@ -33,6 +36,8 @@ struct MyAvatarCellBuilder: View {
                 subTitle: nil,
                 isLoading: isLoading
             )
+            .background(.primary.opacity(0.0001))
+            .onTapGesture { onAvatarPress?(avatar) }
             
             if !isLoading {
                 ellipsisMenu
@@ -74,9 +79,11 @@ extension MyAvatarCellBuilder {
         } label: {
             Image(systemName: "ellipsis")
                 .fontWeight(.semibold)
-                .frame(width: 28, height: 28)
+                .frame(width: 44)
+                .frame(maxHeight: .infinity)
                 .tint(.primary)
-                .background(.primary.opacity(0.0001))
+//                .background(.primary.opacity(0.0001))
+                .background(.blue)
         }
     }
 }

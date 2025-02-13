@@ -84,6 +84,6 @@ extension View {
 
 #Preview {
     NavigationStack {
-        ChatMessageListView()
+        ChatMessageListView(avatar: .sample)
     }
 }

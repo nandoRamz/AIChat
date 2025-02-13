@@ -11,31 +11,30 @@ struct MyAvatarsSectionViewBuilder: View {
     @Environment(AvatarManager.self) private var avatarManager
     @Environment(AuthManager.self) private var authManager
     
-//    @State private var avatars: [AvatarModel] = []
+    @State private var avatars: [AvatarModel] = []
     @State private var didFinishFetchingAvatars: Bool = false
     @State private var selectedAvatar: AvatarModel?
     @State private var isShowingDeleteConfirmationDialog: Bool = false
+    
     private var isPreview: Bool = false
-    private var avatars: [AvatarModel] {
-        avatarManager.currentUserAvatars
-    }
-    
-    var onCreateAvatarPress: (() -> Void)?
-    
     ///Only used for Xcode Previews
     init(
         avatars: [AvatarModel],
         didFinishFetchingAvatars: Bool
     ) {
-//        _avatars = State(wrappedValue: avatars)
+        _avatars = State(wrappedValue: avatars)
         _didFinishFetchingAvatars = State(wrappedValue: didFinishFetchingAvatars)
         isPreview = true
     }
     
+    var onCreateAvatarPress: (() -> Void)?
+    var onAvatarPress: ((AvatarModel) -> Void)?
     init(
-        onCreateAvatarPress: (() -> Void)? = nil
+        onCreateAvatarPress: (() -> Void)? = nil,
+        onAvatarPress: ((AvatarModel) -> Void)? = nil
     ) {
         self.onCreateAvatarPress = onCreateAvatarPress
+        self.onAvatarPress = onAvatarPress
     }
     
     var body: some View {
@@ -77,6 +76,9 @@ struct MyAvatarsSectionViewBuilder: View {
                 Text("Are you sure you would like to delete this avatar?")
             }
         )
+        .onChange(of: avatarManager.currentUserAvatars) { _, newValue in
+            avatars = newValue
+        }
     }
 }
 
@@ -89,6 +91,9 @@ extension MyAvatarsSectionViewBuilder {
                 MyAvatarCellBuilder(
                     isLoading: !didFinishFetchingAvatars,
                     avatar: avatar,
+                    onAvatarPress: { model in
+                        onAvatarPress?(model)
+                    },
                     onMenuItemPress: { action in
                         onAvatarMenuActionPress(action, avatar: avatar)
                     }
@@ -180,6 +185,7 @@ extension MyAvatarsSectionViewBuilder {
         Task {
             do {
                 try await avatarManager.updateCurrentUserAvatars(for: try authManager.getId())
+                avatars = avatarManager.currentUserAvatars
             }
             catch {
                 print("Error with fetching my avatars: \(error)")

@@ -20,29 +20,17 @@ struct CarouselView<T: Hashable, Content: View, ScrollBehavior: ScrollTargetBeha
     var body: some View {
         VStack(spacing: 16) {
             itemsScrollView
-            
-            if isShowingPageIndicator {
-                pagingIndicatorView
-            }
         }
         .onAppear { updateSelection() }
+        .onChange(of: items) { _, _ in
+            updateSelection()
+        }
     }
 }
 
 //MARK: - Views
 ///Views
 extension CarouselView {
-    private var pagingIndicatorView: some View {
-        HStack(spacing: 8) {
-            ForEach(items, id: \.self) { item in
-                Circle()
-                    .fill(selectedItem == item ? AnyShapeStyle(Color.accentColor) : AnyShapeStyle(.quinary))
-                    .frame(width: 8, height: 8)
-            }
-            .animation(.linear, value: selectedItem)
-        }
-    }
-    
     private var itemsScrollView: some View {
         ScrollView(.horizontal) {
             HStack(spacing: itemsSpacing) {
@@ -51,10 +39,6 @@ extension CarouselView {
                         .id(item)
                         .containerRelativeFrame(.horizontal, count: numberOfItemsOnScreen, spacing: itemsSpacing)
                 }
-//                .scrollTransition(.interactive.threshold(.visible(0.8))) { content, phase in
-//                    content
-//                        .scaleEffect(phase.isIdentity ? 1 : 0.8)
-//                }
             }
             .scrollTargetLayout()
         }
@@ -69,7 +53,9 @@ extension CarouselView {
 ///Methods
 extension CarouselView {
     private func updateSelection() {
-        selectedItem = items.first
+//        withAnimation(.easeInOut) {
+            selectedItem = items.first
+//        }
     }
 }
 
